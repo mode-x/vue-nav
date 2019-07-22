@@ -1,0 +1,11 @@
+{
+  "name": "vue-nav",
+  "version": "1.0.0",
+  "description": "A composite web navigation component for vue apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mode-x",
+  "license": "MIT"
+}
