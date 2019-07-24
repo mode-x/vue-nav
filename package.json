@@ -1,11 +1,29 @@
 {
-  "name": "vue-nav",
-  "version": "1.0.0",
-  "description": "A composite web navigation component for vue apps",
-  "main": "index.js",
+  "name": "vue-nav-1",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "author": "mode-x",
-  "license": "MIT"
+  "dependencies": {
+    "bulma": "^0.7.5",
+    "core-js": "^2.6.5",
+    "eslint-plugin-prettier": "^3.1.0",
+    "hamburgers": "^1.1.3",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
 }
