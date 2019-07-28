@@ -1,28 +1,66 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav-bar
+      :logged-in="logged_in"
+      :site="site"
+      :user="user"
+      v-on:log-out="logOut"
+      :menu-items="menu_items"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "app",
+  data() {
+    return {
+      logged_in: true,
+      site: { name: "Pidasys" },
+      user: {
+        email: "myemail@github.com",
+        role: "admin",
+        avatar: "https://bulma.io/images/placeholders/128x128.png"
+      },
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+      menu_items: [
+        {
+          header_title: "Dashboard",
+          header_route: "/dashboard",
+          icon_type: "fas",
+          icon_name: "tv"
+        },
+        {
+          header_title: "Billing",
+          header_route: "/billing",
+          icon_type: "fas",
+          icon_name: "dollar-sign"
+        },
+        {
+          header_title: "Users",
+          header_route: "/",
+          icon_type: "fas",
+          icon_name: "users",
+          sub_menus: [
+            { name: "Users", route: "/users" },
+            { name: "Administrators", route: "/admin" }
+          ]
+        },
+        {
+          header_title: "Preferences",
+          header_route: "/",
+          icon_type: "fas",
+          icon_name: "cog",
+          sub_menus: [{ name: "Settings", route: "/settings" }]
+        }
+      ]
+    };
+  },
+  methods: {
+    logOut() {
+      this.logged_in = !this.logged_in;
+      console.log("Logged out");
+    }
+  }
+};
+</script>

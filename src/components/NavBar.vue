@@ -1,94 +1,21 @@
 <template>
   <div id="nav-bar">
-    <div
-      class="sidebar animate-left"
-      style="display:none"
-      id="sidebar"
-    >
+    <div class="sidebar animate-left" style="display:none" id="sidebar">
       <aside class="menu">
         <p class="menu-label">Menu</p>
         <div class="has-text-centered">
           <figure class="image is-64x64 is-inline-block">
-            <img
-              class="is-rounded"
-              src="https://bulma.io/images/placeholders/128x128.png"
-            />
+            <img class="is-rounded" :src="user.avatar" />
           </figure>
         </div>
         <hr />
-        <p class="school-info has-background-grey-lighter">
-          {{ email }} | {{ role }}
-        </p>
-        <p class="school-info has-background-grey-lighter">
-          {{ subscriptionStatus }}
-        </p>
-        <p class="school-info has-background-grey-lighter">
-          {{ daysRemaining }}
+        <p class="user-info has-background-grey-lighter">
+          {{ user.email }} | {{ user.role }}
         </p>
         <hr />
-        <template v-if="role === 'admin'">
+        <template>
           <ul class="menu-list">
-            <li
-              v-for="menu_item in admin_menu_items"
-              :key="menu_item.header_title"
-            >
-              <router-link
-                :to="menu_item.header_route"
-                v-on:click.native="openSubMenu"
-              >
-                <div class="is-clearfix" style="width: 100%">
-                  <div class="is-pulled-left" style="width: 14%">
-                    <font-awesome-icon
-                      :icon="[menu_item.icon_type, menu_item.icon_name]"
-                      size="lg"
-                    />
-                  </div>
-                  <div class="is-pulled-left" style="width: 86%">
-                    {{ menu_item.header_title }}
-                  </div>
-                </div>
-              </router-link>
-              <div
-                :id="
-                  `${menu_item.header_title
-                    .toLowerCase()
-                    .replace(/\W/gi, '-')}-items`
-                "
-                class="sub-menu"
-                style="display:none"
-                v-if="menu_item.hasOwnProperty('sub_menus')"
-                data-open="false"
-                :data-parent="
-                  `${menu_item.header_title.toLowerCase().replace(/\W/gi, '-')}`
-                "
-              >
-                <ul>
-                  <li
-                    v-for="sub_menu_item in menu_item.sub_menus"
-                    :key="sub_menu_item.name"
-                  >
-                    <router-link
-                      :id="
-                        `${sub_menu_item.name
-                          .toLowerCase()
-                          .replace(/\W/gi, '-')}-sub-menu-items`
-                      "
-                      :to="sub_menu_item.route"
-                      v-on:click.native="toggleMenu"
-                      >{{ sub_menu_item.name }}</router-link
-                    >
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </template>
-        <template v-else-if="role === 'educator'">
-          <ul class="menu-list">
-            <li
-              v-for="menu_item in educator_menu_items"
-              :key="menu_item.header_title"
-            >
+            <li v-for="menu_item in menuItems" :key="menu_item.header_title">
               <router-link
                 :to="menu_item.header_route"
                 v-on:click.native="openSubMenu"
@@ -158,12 +85,12 @@
           </span>
         </button>
         <template v-if="!loggedIn">
-          <router-link class="navbar-item" to="/">SIMSED</router-link>
+          <router-link class="navbar-item" to="/">NAV BAR</router-link>
         </template>
         <template v-else>
           <router-link class="navbar-item" to="/">
             <p class="title is-4" style="padding-bottom: 8px">
-              {{ school.name }}
+              {{ site.name }}
             </p>
           </router-link>
         </template>
@@ -241,7 +168,7 @@
               <div class="column">
                 <div class="level">
                   <div class="level-item has-text-centered">
-                    <router-link to="/login-in" class="nav-menu-item">
+                    <router-link to="/pricing" class="nav-menu-item">
                       <span class="icon">
                         <font-awesome-icon icon="dollar-sign" size="lg" />
                       </span>
@@ -253,7 +180,7 @@
               <div class="column">
                 <div class="level">
                   <div class="level-item has-text-centered">
-                    <router-link to="/login-in" class="nav-menu-item">
+                    <router-link to="/faq" class="nav-menu-item">
                       <span class="icon">
                         <font-awesome-icon icon="question" size="lg" />
                       </span>
@@ -300,120 +227,14 @@ export default {
   data() {
     return {
       is_menu_open: false,
-      is_sub_menu_open: false,
-      admin_menu_items: [
-        {
-          header_title: "Dashboard",
-          header_route: "/dashboard",
-          icon_type: "fas",
-          icon_name: "tv"
-        },
-        {
-          header_title: "Billing",
-          header_route: "/subscription",
-          icon_type: "fab",
-          icon_name: "cc-amazon-pay"
-        },
-        {
-          header_title: "Structure",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "cubes",
-          sub_menus: [
-            { name: "Terms", route: "/terms" },
-            { name: "Class Groups", route: "/class_groups" },
-            { name: "School Classes", route: "/school_classes" },
-            { name: "Subjects", route: "/subjects" },
-            { name: "Assigned Subjects", route: "/assigned_subjects" },
-            { name: "Assigned Classes", route: "/assigned_classes" }
-          ]
-        },
-        {
-          header_title: "Users",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "users",
-          sub_menus: [
-            { name: "Users", route: "/terms" },
-            { name: "Administrators", route: "/" },
-            { name: "Educators", route: "/educators" },
-            { name: "Parents", route: "/students" },
-            { name: "Students", route: "/students" }
-          ]
-        },
-        {
-          header_title: "Results",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "file-alt",
-          sub_menus: [
-            { name: "ATE Results", route: "/terms" },
-            { name: "ATE Comments", route: "/" },
-            { name: "ATE Psychomotor", route: "/educators" },
-            { name: "ATE Attendance", route: "/students" },
-            { name: "Result Publisher", route: "/students" }
-          ]
-        },
-        {
-          header_title: "Preferences",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "cog",
-          sub_menus: [
-            { name: "School", route: "/terms" },
-            { name: "School Calendar", route: "/terms" },
-            { name: "Grading scales", route: "/" },
-            { name: "Graduates", route: "/educators" },
-            { name: "Promote Students", route: "/students" },
-            { name: "Withdrawals", route: "/students" },
-            { name: "School Settings", route: "/students" },
-            { name: "Results Header", route: "/students" },
-            { name: "ATES", route: "/students" },
-            { name: "ATES Policy", route: "/ate_policy" }
-          ]
-        }
-      ],
-      educator_menu_items: [
-        {
-          header_title: "Dashboard",
-          header_route: "/dashboard",
-          icon_type: "fas",
-          icon_name: "tv"
-        },
-        {
-          header_title: "New ATE",
-          header_route: "/new_ate",
-          icon_type: "fab",
-          icon_name: "cc-amazon-pay"
-        },
-        {
-          header_title: "ATE Unmarked",
-          header_route: "/ate_unmarked",
-          icon_type: "fab",
-          icon_name: "cc-amazon-pay"
-        },
-        {
-          header_title: "ATE Result",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "cubes",
-          sub_menus: [
-            { name: "Result Scores", route: "/terms" },
-            { name: "Result Comments", route: "/class_groups" },
-            { name: "Result Psychomotors", route: "/school_classes" },
-            { name: "Result Attendance", route: "/subjects" }
-          ]
-        }
-      ]
+      is_sub_menu_open: false
     };
   },
   props: {
     loggedIn: Boolean,
-    school: Object,
-    email: String,
-    role: String,
-    subscriptionStatus: String,
-    daysRemaining: String
+    site: Object,
+    user: Object,
+    menuItems: Array
   },
   methods: {
     logOut() {
@@ -424,10 +245,7 @@ export default {
     },
     openSubMenu(e) {
       const header_title = e.target.innerText;
-      let items = this.admin_menu_items;
-      if (this.role === "educator") {
-        items = this.educator_menu_items;
-      }
+      let items = this.menuItems;
       const menus = items.filter(
         menu_item =>
           menu_item.sub_menus && menu_item.header_title === header_title
@@ -510,7 +328,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $hamburger-layer-width: 30px;
 
 @import "./node_modules/hamburgers/_sass/hamburgers/hamburgers";
@@ -520,10 +338,10 @@ a {
 }
 
 a:hover {
-  color: orange;
+  color: rgb(92, 255, 127);
 }
 
-.school-info {
+.user-info {
   font-size: 0.85em;
   padding: 5px;
   margin-bottom: 5px;
