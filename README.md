@@ -45,6 +45,7 @@ Vue.component("vue-navs", VueNavs)
 ```
 @import "./../../../node_modules/vue-navs/dist/VueNavs.css";
 @import "./../../../node_modules/bulma/css/bulma.css";
+$hamburger-layer-width: 30px;
 @import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
