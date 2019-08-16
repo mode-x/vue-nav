@@ -1,6 +1,8 @@
 <template>
-  <div id="nav-bar">
-    <div class="sidebar animate-left" style="display:none" id="sidebar">
+  <div id="vue-navs">
+    <!-- Side Bar -->
+    <div id="sidebar" style="display:none">
+      <!-- Menu -->
       <aside class="menu">
         <p class="menu-label">Menu</p>
         <div class="has-text-centered">
@@ -13,6 +15,7 @@
           {{ user.email }} | {{ user.role }}
         </p>
         <hr />
+        <!-- Menu items-->
         <template>
           <ul class="menu-list">
             <li v-for="menu_item in menuItems" :key="menu_item.header_title">
@@ -71,11 +74,13 @@
         </template>
       </aside>
     </div>
+    <!-- Nav Bar -->
     <nav id="nav" class="navbar is-transparent is-fixed-top" data-open="false">
       <div class="navbar-brand">
+        <!-- Hamburger button -->
         <button
           id="hamburger-btn"
-          class="hamburger hamburger--spin navbar-item"
+          :class="`hamburger ${hamburgerType} navbar-item`"
           type="button"
           aria-label="Menu"
           aria-controls="navigation"
@@ -86,6 +91,7 @@
             <span class="hamburger-inner"></span>
           </span>
         </button>
+        <!-- Nav Bar content -->
         <template v-if="!loggedIn">
           <router-link class="navbar-item" to="/">NAV BAR</router-link>
         </template>
@@ -225,14 +231,15 @@
 
 <script>
 export default {
-  name: "nav-bar",
+  name: "vue-navs",
   data() {
     return {
-      is_menu_open: false,
+      is_side_bar_open: false,
       is_sub_menu_open: false
     };
   },
   props: {
+    hamburgerType: String,
     loggedIn: Boolean,
     site: Object,
     user: Object,
@@ -296,17 +303,19 @@ export default {
     },
     toggleMenu() {
       document.getElementById("hamburger-btn").classList.toggle("is-active");
-      if (this.is_menu_open) {
-        document.getElementById("nav").style.marginLeft = "0px";
-        document.getElementById("sidebar").style.display = "none";
-        document.getElementById("nav").setAttribute("data-open", "false");
+      const nav = document.getElementById("nav");
+      const sidebar = document.getElementById("sidebar");
+      if (this.is_side_bar_open) {
+        nav.style.marginLeft = "0px";
+        nav.setAttribute("data-open", "false");
+        sidebar.style.display = "none";
       } else {
-        document.getElementById("nav").style.marginLeft = "280px";
-        document.getElementById("sidebar").style.width = "280px";
-        document.getElementById("sidebar").style.display = "block";
-        document.getElementById("nav").setAttribute("data-open", "true");
+        sidebar.style.width = "250px";
+        sidebar.style.display = "block";
+        nav.style.marginLeft = "250px";
+        nav.setAttribute("data-open", "true");
       }
-      this.is_menu_open = !this.is_menu_open;
+      this.is_side_bar_open = !this.is_side_bar_open;
     }
   },
   mounted() {
@@ -330,18 +339,14 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$hamburger-layer-width: 30px;
+<style lang="scss" scoped>
+// a {
+//   padding-right: 25px;
+// }
 
-@import "./node_modules/hamburgers/_sass/hamburgers/hamburgers";
-
-a {
-  padding-right: 25px;
-}
-
-a:hover {
-  color: rgb(92, 255, 127);
-}
+// a:hover {
+//   color: rgb(92, 255, 127);
+// }
 
 .user-info {
   font-size: 0.85em;
@@ -349,55 +354,9 @@ a:hover {
   margin-bottom: 5px;
 }
 
-#nav {
-  opacity: 0.8;
-  background: linear-gradient(to right, rgb(144, 202, 249), rgb(255, 255, 255));
-}
-
 p.icon,
 p.heading {
   color: rgb(40, 42, 44);
-  // color: rgb(16, 141, 243);
-}
-
-#sidebar {
-  height: 100%;
-  width: 200px;
-  background-color: #ffffff;
-  position: fixed !important;
-  z-index: 1;
-  overflow: auto;
-  top: 0px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.animate-left {
-  position: relative;
-  animation: animateleft 0.4s;
-}
-@keyframes animateleft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-  to {
-    left: 0;
-    opacity: 1;
-  }
-}
-
-#nav {
-  animation: animateleft 0.6s;
-}
-@keyframes animateleft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-  to {
-    left: 0px;
-    opacity: 1;
-  }
 }
 
 .menu {
@@ -417,6 +376,49 @@ p.heading {
   visibility: visible !important;
 }
 
+.animateNavleft {
+  animation-name: animateNavleft;
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+  visibility: visible !important;
+}
+
+#sidebar {
+  height: 100%;
+  width: 250px;
+  background-color: #ffffff;
+  position: fixed !important;
+  z-index: 1;
+  overflow: auto;
+  top: 0px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  animation: animateleft 0.6s;
+}
+
+#nav {
+  opacity: 0.8;
+  background: linear-gradient(to right, rgb(144, 202, 249), rgb(255, 255, 255));
+  animation: animateleft 0.6s;
+}
+
+@keyframes animateleft {
+  from {
+    left: -250px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animateNavleft {
+  0% {
+    margin-left: -250px;
+    opacity: 0;
+  }
+}
+
 @keyframes slideDown {
   0% {
     transform: translateY(-100%);
@@ -433,6 +435,10 @@ p.heading {
   80% {
     transform: translateY(4%);
     opacity: 0.6;
+  }
+  95% {
+    -webkit-transform: translateY(-2%);
+    opacity: 0.8;
   }
   100% {
     transform: translateY(0%);

@@ -1,6 +1,6 @@
 # Vue Navs
 
-Vue Nav is a composite navigation component for Vue apps. The intention of the component is to make it easy to integrate **Side-Navs** and **Nav-bars** in a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/). Besides, in subsequent versions it will be made to work also with either:
+Vue Nav is a composite navigation component for Vue apps. The intention of the component is to make it easy to integrate **Side-Navs** and **Nav-bars** in a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button. Besides, in subsequent versions it will be made to work also with either:
 
 - Bootstrap
 - Materialize
@@ -15,17 +15,22 @@ yarn add vue-navs
 
 # Dependency
 
+The following are required:
+
+- Bulma
+- Hamburgers
+- Vue Router
+
 ```
-Bulma is needed to use this component. Visit [https://bulma.io/] to learn more.
-Run npm install bulma
+Run npm install bulma hamburgers vue-router
 or
-yarn add bulma
+yarn add bulma hamburgers vue-router
 ```
 
 # Integration
 
 1. After installation
-2. import the component into main.js
+2. Import the component into main.js
 
 ```
 import VueNavs from "vue-navs"
@@ -33,32 +38,38 @@ import VueNavs from "vue-navs"
 Vue.component("vue-navs", VueNavs)
 ```
 
-3. Create a file named bulma.scss in assets folder and add the follwing:
+3. Create a file named bulma.scss in assets folder and add the following to it:
 
 ```
 @import "./../../node_modules/vue-navs/dist/VueNavs.css";
 @import "./../../node_modules/bulma/css/bulma.css";
+@import "./../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
-4. The component is ready to be used in your Vue app
+4. The component is ready to be used in your Vue app within your parent component.
 5. In the parent component, your declaration should look like this:
 
 ```
 <vue-navs
+  :hamburger-type="hamburger_type"
   :logged-in="logged_in"
   :site="site"
   :user="user"
-  v-on:log-out="logOut"
   :menu-items="menu_items"
+  v-on:log-out="logOut"
 />
 ```
 
-### Prop default composition
+### Props - default composition
 
-- logged_in is a Boolean value
-- site is an Object
-- user is an Object
-- logOut is a function
+- hamburger-type is a String (hamburger--spin is the default style. Visit [https://jonsuh.com/hamburgers/] for more styles).
+- logged-in is a Boolean value.
+- site is an Object.
+- user is an Object.
+- menu-items is an Object.
+- logOut is a function.
+
+Below is the default composition of the props property of the component:
 
 ```
 <script>
@@ -66,6 +77,7 @@ Vue.component("vue-navs", VueNavs)
     name: "Your Parent",
     data() {
       return {
+        hamburger_type: "hamburger--spin",
         logged_in: true,
         site: { name: "My Website Name" },
         user: {
@@ -73,7 +85,6 @@ Vue.component("vue-navs", VueNavs)
           role: "admin",
           avatar: "https://bulma.io/images/placeholders/128x128.png"
         },
-
         menu_items: [
           {
             header_title: "Dashboard",
@@ -115,6 +126,12 @@ Vue.component("vue-navs", VueNavs)
   }
 </script>
 ```
+
+# Features
+
+1. Provides log in and log out templates.
+2. Built-in capability for flexible use of either Bulma (default), Bootstrap or Materialize css libraries (WIP).
+3. Easy cusomization.
 
 # Licence
 
