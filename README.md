@@ -38,12 +38,12 @@ import VueNavs from "vue-navs"
 Vue.component("vue-navs", VueNavs)
 ```
 
-3. Create a file named bulma.scss in assets folder and add the following to it:
+3. Create a file _assets/css/bulma.scss_ and add the following to it:
 
 ```
-@import "./../../node_modules/vue-navs/dist/VueNavs.css";
-@import "./../../node_modules/bulma/css/bulma.css";
-@import "./../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+@import "./../../../node_modules/vue-navs/dist/VueNavs.css";
+@import "./../../../node_modules/bulma/css/bulma.css";
+@import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
 4. The component is ready to be used in your Vue app within your parent component.
@@ -131,7 +131,7 @@ Below is the default composition of the props property of the component:
 
 1. Provides log in and log out templates.
 2. Built-in capability for flexible use of either Bulma (default), Bootstrap or Materialize css libraries (WIP).
-3. Easy cusomization.
+3. Easy customization of hamburger button style and more.
 
 # Licence
 
