@@ -5,7 +5,7 @@
   "main": "./dist/VueNavs.common.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mode-x/vue-nav.git"
+    "url": "https://github.com/mode-x/vue-navs.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -36,11 +36,7 @@
     "eslint-plugin-prettier": "^3.1.0"
   },
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "author": "mode-x",
   "license": "ISC",
