@@ -64,7 +64,7 @@ Vue.component("vue-navs", VueNavs)
 
 ### Props - default composition
 
-- hamburger-type is a String (hamburger--spin is the default style. Visit [https://jonsuh.com/hamburgers/] for more styles).
+- hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
 - logged-in is a Boolean value.
 - site is an Object.
 - user is an Object.
