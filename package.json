@@ -1,8 +1,8 @@
 {
   "name": "vue-navs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A composite navigation component for vue apps.",
-  "main": "./dist/vue-navs.common.js",
+  "main": "./dist/VueNavs.common.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mode-x/vue-nav.git"
