@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-nav
+    <vue-navs
       :logged-in="logged_in"
       :site="site"
       :user="user"

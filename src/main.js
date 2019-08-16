@@ -1,11 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router.js";
-import VueNav from "@/components/VueNav";
+import VueNavs from "@/components/VueNavs";
 
 import "@/assets/css/bulma.scss";
 
-Vue.component("vue-nav", VueNav);
+Vue.component("vue-navs", VueNavs);
 
 Vue.config.productionTip = false;
 

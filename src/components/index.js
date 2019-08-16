@@ -1,10 +1,8 @@
 import Vue from "vue";
-import VueNav from "./VueNav.vue";
-
-import "@/assets/css/bulma.scss";
+import VueNavs from "./VueNavs.vue";
 
 const Components = {
-  VueNav
+  VueNavs
 };
 
 Object.keys(Components).forEach(name => {

@@ -1,12 +1,12 @@
 {
-  "name": "@pidasys/vue-nav",
+  "name": "vue-navs",
   "version": "0.1.0",
   "description": "",
-  "main": "./dist/vue-nav.common.js",
+  "main": "./dist/vue-navs.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-package": "vue-cli-service build --target lib --name VueNav ./src/components/VueNav.vue",
+    "build-package": "vue-cli-service build --target lib --name VueNavs ./src/components/VueNavs.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
