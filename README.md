@@ -4,7 +4,6 @@ Vue Nav is a composite navigation component for vue apps. The intention of the c
 
 # Licence
 
-===
 Copyright 2019 pidasys
 
 Licensed under the Apache License, Version 2.0 (the "License");
