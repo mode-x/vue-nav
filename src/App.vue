@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar
+    <vue-nav
       :logged-in="logged_in"
       :site="site"
       :user="user"
@@ -59,7 +59,6 @@ export default {
   methods: {
     logOut() {
       this.logged_in = !this.logged_in;
-      console.log("Logged out");
     }
   }
 };

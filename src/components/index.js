@@ -1,8 +1,10 @@
 import Vue from "vue";
-import NavBar from "./NavBar.vue";
+import VueNav from "./VueNav.vue";
+
+import "@/assets/css/bulma.scss";
 
 const Components = {
-  NavBar
+  VueNav
 };
 
 Object.keys(Components).forEach(name => {

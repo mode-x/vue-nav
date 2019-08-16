@@ -22,10 +22,12 @@
               >
                 <div class="is-clearfix" style="width: 100%">
                   <div class="is-pulled-left" style="width: 14%">
-                    <font-awesome-icon
-                      :icon="[menu_item.icon_type, menu_item.icon_name]"
-                      size="lg"
-                    />
+                    <span class="icon">
+                      <i
+                        :class="`${menu_item.icon_type} ${menu_item.icon_name}`"
+                        size="lg"
+                      ></i>
+                    </span>
                   </div>
                   <div class="is-pulled-left" style="width: 86%">
                     {{ menu_item.header_title }}
@@ -116,7 +118,7 @@
                       class="nav-menu-item has-dropdown is-hoverable"
                     >
                       <p class="icon">
-                        <font-awesome-icon icon="user" size="lg" />
+                        <i class="fas user" size="lg"></i>
                       </p>
                       <p class="heading">Account</p>
                     </a>
@@ -128,7 +130,7 @@
                   <div class="level-item has-text-centered">
                     <a href="#" @click="logOut" class="nav-menu-item">
                       <p class="icon">
-                        <font-awesome-icon icon="sign-out-alt" size="lg" />
+                        <i class="fas sign-out-alt" size="lg"></i>
                       </p>
                       <p class="heading">Log Out</p>
                     </a>
@@ -146,7 +148,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/" class="nav-menu-item">
                       <span class="icon">
-                        <font-awesome-icon icon="home" size="lg" />
+                        <i class="fas home" size="lg"></i>
                       </span>
                       <p class="heading">Home</p>
                     </router-link>
@@ -158,7 +160,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/welcome" class="nav-menu-item">
                       <span class="icon">
-                        <font-awesome-icon icon="chart-pie" size="lg" />
+                        <i class="fas chart-pie" size="lg"></i>
                       </span>
                       <p class="heading">Features</p>
                     </router-link>
@@ -170,7 +172,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/pricing" class="nav-menu-item">
                       <span class="icon">
-                        <font-awesome-icon icon="dollar-sign" size="lg" />
+                        <i class="fas dollar-sign" size="lg"></i>
                       </span>
                       <p class="heading">Pricing</p>
                     </router-link>
@@ -182,7 +184,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/faq" class="nav-menu-item">
                       <span class="icon">
-                        <font-awesome-icon icon="question" size="lg" />
+                        <i class="fas question" size="lg"></i>
                       </span>
                       <p class="heading">FAQ</p>
                     </router-link>
@@ -194,7 +196,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/register" class="nav-menu-item">
                       <span class="icon">
-                        <font-awesome-icon icon="university" size="lg" />
+                        <i class="fas university" size="lg"></i>
                       </span>
                       <p class="heading">Register</p>
                     </router-link>
@@ -206,7 +208,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/login_in" class="nav-menu-item">
                       <p class="icon">
-                        <font-awesome-icon icon="sign-in-alt" size="lg" />
+                        <i class="fas sign-in-alt" size="lg"></i>
                       </p>
                       <p class="heading">Log In</p>
                     </router-link>
