@@ -30,15 +30,17 @@ yarn add bulma hamburgers vue-router
 # Integration
 
 1. After installation
-2. Import the component into main.js
+2. Add the following in main.js
 
 ```
 import VueNavs from "vue-navs"
 
+import "@/assets/css/bulma.scss";
+
 Vue.component("vue-navs", VueNavs)
 ```
 
-3. Create a file _assets/css/bulma.scss_ and add the following to it:
+3. Create a file _assets/css/bulma.scss_ and add these import statements to it:
 
 ```
 @import "./../../../node_modules/vue-navs/dist/VueNavs.css";
