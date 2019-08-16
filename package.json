@@ -1,7 +1,7 @@
 {
   "name": "vue-navs",
   "version": "0.1.0",
-  "description": "",
+  "description": "A composite navigation component for vue apps.",
   "main": "./dist/vue-navs.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -41,10 +41,9 @@
   "author": "mode-x",
   "license": "ISC",
   "keywords": [
-    "vue",
-    "side bar",
-    "nav bar",
-    "navigation",
+    "vue nav",
+    "side-bar",
+    "nav-bar",
     "components"
   ]
 }
