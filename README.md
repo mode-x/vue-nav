@@ -1,6 +1,6 @@
 # Vue Navs
 
-Vue Nav is a composite navigation component for vue apps. The intention of the component is to make it easy to integrate **Side-Navs** and **Nav-bars** in a Vue project.
+Vue Nav is a composite navigation component for Vue apps. The intention of the component is to make it easy to integrate **Side-Navs** and **Nav-bars** in a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/).
 
 # Licence
 
