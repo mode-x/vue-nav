@@ -16,13 +16,15 @@ yarn add vue-navs
 # Dependency
 
 ```
-Bulma is needed to use this component. Visit <https://bulma.io/> to learn more.
-Simply run npm install bulma or yarn add bulma
+Bulma is needed to use this component. Visit [https://bulma.io/] to learn more.
+Run npm install bulma
+or
+yarn add bulma
 ```
 
 # Integration
 
-1. After installing using npm or yarn
+1. After installation
 2. import the component into main.js
 
 ```
@@ -39,6 +41,80 @@ Vue.component("vue-navs", VueNavs)
 ```
 
 4. The component is ready to be used in your Vue app
+5. In the parent component, your declaration should look like this:
+
+```
+<vue-navs
+  :logged-in="logged_in"
+  :site="site"
+  :user="user"
+  v-on:log-out="logOut"
+  :menu-items="menu_items"
+/>
+```
+
+### Prop default composition
+
+- logged_in is a Boolean value
+- site is an Object
+- user is an Object
+- logOut is a function
+
+```
+<script>
+  export default {
+    name: "Your Parent",
+    data() {
+      return {
+        logged_in: true,
+        site: { name: "My Website Name" },
+        user: {
+          email: "myemail@github.com",
+          role: "admin",
+          avatar: "https://bulma.io/images/placeholders/128x128.png"
+        },
+
+        menu_items: [
+          {
+            header_title: "Dashboard",
+            header_route: "/dashboard",
+            icon_type: "fas",
+            icon_name: "tv"
+          },
+          {
+            header_title: "Billing",
+            header_route: "/billing",
+            icon_type: "fas",
+            icon_name: "dollar-sign"
+          },
+          {
+            header_title: "Users",
+            header_route: "/",
+            icon_type: "fas",
+            icon_name: "users",
+            sub_menus: [
+              { name: "Users", route: "/users" },
+              { name: "Administrators", route: "/admin" }
+            ]
+          },
+          {
+            header_title: "Preferences",
+            header_route: "/",
+            icon_type: "fas",
+            icon_name: "cog",
+            sub_menus: [{ name: "Settings", route: "/settings" }]
+          }
+        ]
+      }
+    },
+    methods: {
+      logOut() {
+        this.logged_in = !this.logged_in
+      }
+    }
+  }
+</script>
+```
 
 # Licence
 
