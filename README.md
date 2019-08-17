@@ -13,9 +13,7 @@ or
 yarn add vue-navs
 ```
 
-# Dependency
-
-The following are required:
+# Dependencies
 
 - Bulma
 - Hamburgers
@@ -30,7 +28,7 @@ yarn add bulma hamburgers vue-router
 # Integration
 
 1. After installation
-2. Add the following in main.js
+2. Add the following to main.js
 
 ```
 import VueNavs from "vue-navs"
@@ -40,7 +38,7 @@ import "@/assets/css/bulma.scss";
 Vue.component("vue-navs", VueNavs)
 ```
 
-3. Create a file _assets/css/bulma.scss_ and add these import statements to it:
+3. Create a file _assets/css/bulma.scss_ and add these statements to it:
 
 ```
 @import "./../../../node_modules/vue-navs/dist/VueNavs.css";
@@ -49,7 +47,7 @@ $hamburger-layer-width: 30px;
 @import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
-4. The component is ready to be used in your Vue app within your parent component.
+4. The component is ready to be used in your Vue app.
 5. In the parent component, your declaration should look like this:
 
 ```
@@ -66,7 +64,7 @@ $hamburger-layer-width: 30px;
 ### Props - default composition
 
 - hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
-- logged-in is a Boolean value.
+- logged-in is a Boolean.
 - site is an Object.
 - user is an Object.
 - menu-items is an Object.
@@ -132,7 +130,7 @@ Below is the default composition of the props property of the component:
 
 # Features
 
-1. Provides log in and log out templates.
+1. Provides logged in and logged out templates.
 2. Built-in capability for flexible use of either Bulma (default), Bootstrap or Materialize css libraries (WIP).
 3. Easy customization of hamburger button style and more.
 
