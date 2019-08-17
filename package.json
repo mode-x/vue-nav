@@ -1,6 +1,6 @@
 {
   "name": "vue-navs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A composite navigation component for vue apps.",
   "main": "./dist/VueNavs.common.js",
   "repository": {
@@ -24,16 +24,14 @@
     "@vue/cli-service": "^3.9.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
+    "core-js": "^2.6.5",
     "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10",
-    "rollup-plugin-vue": "^5.0.1",
     "vue": "^2.6.10",
-    "core-js": "^2.6.5",
-    "bili": "^4.8.1",
-    "eslint-plugin-prettier": "^3.1.0"
+    "vue-template-compiler": "^2.6.10"
   },
   "files": [
     "dist/*"
