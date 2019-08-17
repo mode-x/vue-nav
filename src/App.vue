@@ -30,19 +30,19 @@ export default {
           header_title: "Dashboard",
           header_route: "/dashboard",
           icon_type: "fas",
-          icon_name: "tv"
+          icon_name: "fa-tv"
         },
         {
           header_title: "Billing",
           header_route: "/billing",
           icon_type: "fas",
-          icon_name: "dollar-sign"
+          icon_name: "fa-dollar-sign"
         },
         {
           header_title: "Users",
           header_route: "/",
           icon_type: "fas",
-          icon_name: "users",
+          icon_name: "fa-users",
           sub_menus: [
             { name: "Users", route: "/users" },
             { name: "Administrators", route: "/admin" }
@@ -52,7 +52,7 @@ export default {
           header_title: "Preferences",
           header_route: "/",
           icon_type: "fas",
-          icon_name: "cog",
+          icon_name: "fa-cog",
           sub_menus: [{ name: "Settings", route: "/settings" }]
         }
       ]

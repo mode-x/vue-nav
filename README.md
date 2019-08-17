@@ -47,8 +47,7 @@ $hamburger-layer-width: 30px;
 @import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
-4. The component is ready to be used in your Vue app.
-5. In the parent component, your declaration should look like this:
+4. In the parent component, your declaration should look like this:
 
 ```
 <vue-navs
@@ -59,6 +58,15 @@ $hamburger-layer-width: 30px;
   :menu-items="menu_items"
   v-on:log-out="logOut"
 />
+```
+
+5. Finally,
+
+```
+Add this to your index.html
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" />
+The component currently, uses fontawesome icons. Other icon libraries will be added soon.
 ```
 
 ### Props - default composition
@@ -91,19 +99,19 @@ Below is the default composition of the props property of the component:
             header_title: "Dashboard",
             header_route: "/dashboard",
             icon_type: "fas",
-            icon_name: "tv"
+            icon_name: "fa-tv"
           },
           {
             header_title: "Billing",
             header_route: "/billing",
             icon_type: "fas",
-            icon_name: "dollar-sign"
+            icon_name: "fa-dollar-sign"
           },
           {
             header_title: "Users",
             header_route: "/",
             icon_type: "fas",
-            icon_name: "users",
+            icon_name: "fa-users",
             sub_menus: [
               { name: "Users", route: "/users" },
               { name: "Administrators", route: "/admin" }
@@ -113,7 +121,7 @@ Below is the default composition of the props property of the component:
             header_title: "Preferences",
             header_route: "/",
             icon_type: "fas",
-            icon_name: "cog",
+            icon_name: "fa-cog",
             sub_menus: [{ name: "Settings", route: "/settings" }]
           }
         ]

@@ -93,7 +93,7 @@
         </button>
         <!-- Nav Bar content -->
         <template v-if="!loggedIn">
-          <router-link class="navbar-item" to="/">NAV BAR</router-link>
+          <router-link class="navbar-item" to="/">VUE NAVS</router-link>
         </template>
         <template v-else>
           <router-link class="navbar-item" to="/">
@@ -114,6 +114,7 @@
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-end" v-if="loggedIn">
           <div class="navbar-item">
+            <!-- Slot for logged in menu items -->
             <div class="columns">
               <div class="column">
                 <div class="level">
@@ -124,7 +125,7 @@
                       class="nav-menu-item has-dropdown is-hoverable"
                     >
                       <p class="icon">
-                        <i class="fas user" size="lg"></i>
+                        <i class="fas fa-user" size="lg"></i>
                       </p>
                       <p class="heading">Account</p>
                     </a>
@@ -136,7 +137,7 @@
                   <div class="level-item has-text-centered">
                     <a href="#" @click="logOut" class="nav-menu-item">
                       <p class="icon">
-                        <i class="fas sign-out-alt" size="lg"></i>
+                        <i class="fas fa-sign-out-alt" size="lg"></i>
                       </p>
                       <p class="heading">Log Out</p>
                     </a>
@@ -148,13 +149,14 @@
         </div>
         <div class="navbar-end" v-else>
           <div class="navbar-item">
+            <!-- Slot for logged out menu items -->
             <div class="columns">
               <div class="column">
                 <div class="level">
                   <div class="level-item has-text-centered">
                     <router-link to="/" class="nav-menu-item">
                       <span class="icon">
-                        <i class="fas home" size="lg"></i>
+                        <i class="fas fa-home" size="lg"></i>
                       </span>
                       <p class="heading">Home</p>
                     </router-link>
@@ -166,7 +168,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/welcome" class="nav-menu-item">
                       <span class="icon">
-                        <i class="fas chart-pie" size="lg"></i>
+                        <i class="fas fa-chart-pie" size="lg"></i>
                       </span>
                       <p class="heading">Features</p>
                     </router-link>
@@ -178,7 +180,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/pricing" class="nav-menu-item">
                       <span class="icon">
-                        <i class="fas dollar-sign" size="lg"></i>
+                        <i class="fas fa-dollar-sign" size="lg"></i>
                       </span>
                       <p class="heading">Pricing</p>
                     </router-link>
@@ -190,7 +192,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/faq" class="nav-menu-item">
                       <span class="icon">
-                        <i class="fas question" size="lg"></i>
+                        <i class="fas fa-question" size="lg"></i>
                       </span>
                       <p class="heading">FAQ</p>
                     </router-link>
@@ -202,7 +204,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/register" class="nav-menu-item">
                       <span class="icon">
-                        <i class="fas university" size="lg"></i>
+                        <i class="fas fa-university" size="lg"></i>
                       </span>
                       <p class="heading">Register</p>
                     </router-link>
@@ -214,7 +216,7 @@
                   <div class="level-item has-text-centered">
                     <router-link to="/login_in" class="nav-menu-item">
                       <p class="icon">
-                        <i class="fas sign-in-alt" size="lg"></i>
+                        <i class="fas fa-sign-in-alt" size="lg"></i>
                       </p>
                       <p class="heading">Log In</p>
                     </router-link>
