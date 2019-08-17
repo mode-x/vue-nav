@@ -1,6 +1,6 @@
 # Vue Navs
 
-Vue Nav is a composite navigation component for Vue apps. The intention of the component is to make it easy to integrate **Side-Navs** and **Nav-bars** in a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button. Besides, in subsequent versions it will be made to work also with either:
+Vue Navs is a composite navigation component for Vue apps. The component makes it easy to integrate **Side-Nav** and **Nav-Bar** into a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button styles. In subsequent versions efforts will be made to make it work also with either:
 
 - Bootstrap
 - Materialize
@@ -30,44 +30,49 @@ yarn add bulma hamburgers vue-router
 1. After installation
 2. Add the following to main.js
 
-```
+⋅⋅⋅```
 import VueNavs from "vue-navs"
 
 import "@/assets/css/bulma.scss";
 
 Vue.component("vue-navs", VueNavs)
-```
+
+````
 
 3. Create a file _assets/css/bulma.scss_ and add these statements to it:
 
-```
+⋅⋅⋅```
+$hamburger-layer-width: 30px;
 @import "./../../../node_modules/vue-navs/dist/VueNavs.css";
 @import "./../../../node_modules/bulma/css/bulma.css";
-$hamburger-layer-width: 30px;
 @import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
-```
+````
 
 4. In the parent component, your declaration should look like this:
 
-```
+⋅⋅⋅```
 <vue-navs
   :hamburger-type="hamburger_type"
   :logged-in="logged_in"
   :site="site"
   :user="user"
   :menu-items="menu_items"
+  :logged-in-items="logged_in_items"
+  :logged-out-items="logged_out_items"
   v-on:log-out="logOut"
 />
-```
+
+````
 
 5. Finally,
 
-```
+⋅⋅⋅```
 Add this to your index.html
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" />
+
 The component currently, uses fontawesome icons. Other icon libraries will be added soon.
-```
+````
 
 ### Props - default composition
 
@@ -76,7 +81,9 @@ The component currently, uses fontawesome icons. Other icon libraries will be ad
 - site is an Object.
 - user is an Object.
 - menu-items is an Object.
-- logOut is a function.
+- logged-in-items is an Array.
+- logged-out-items is an Array.
+- logOut is a Function.
 
 Below is the default composition of the props property of the component:
 
@@ -88,7 +95,7 @@ Below is the default composition of the props property of the component:
       return {
         hamburger_type: "hamburger--spin",
         logged_in: true,
-        site: { name: "My Website Name" },
+        site: { name: "Pidasys" },
         user: {
           email: "myemail@github.com",
           role: "admin",
@@ -96,40 +103,45 @@ Below is the default composition of the props property of the component:
         },
         menu_items: [
           {
-            header_title: "Dashboard",
-            header_route: "/dashboard",
-            icon_type: "fas",
-            icon_name: "fa-tv"
+            name: "Dashboard",
+            icon: "fas fa-tv",
+            route: "/dashboard"
           },
           {
-            header_title: "Billing",
-            header_route: "/billing",
-            icon_type: "fas",
-            icon_name: "fa-dollar-sign"
+            name: "Billing",
+            icon: "fas fa-dollar-sign",
+            route: "/billing"
           },
           {
-            header_title: "Users",
-            header_route: "/",
-            icon_type: "fas",
-            icon_name: "fa-users",
+            name: "Users",
+            icon: "fas fa-users",
+            route: "/",
             sub_menus: [
               { name: "Users", route: "/users" },
               { name: "Administrators", route: "/admin" }
             ]
           },
           {
-            header_title: "Preferences",
-            header_route: "/",
-            icon_type: "fas",
-            icon_name: "fa-cog",
+            name: "Preferences",
+            icon: "fas fa-cog",
+            route: "/",
             sub_menus: [{ name: "Settings", route: "/settings" }]
           }
+        ],
+        logged_in_items: [
+          { name: "Profile", icon: "fas fa-user", route: "/profile" },
+          { name: "Setting", icon: "fas fa-cog", route: "/setting" }
+        ],
+        logged_out_items: [
+          { name: "Home", icon: "fas fa-home", route: "/" },
+          { name: "Faq", icon: "fas fa-question", route: "/faq" },
+          { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
         ]
-      }
+      };
     },
     methods: {
       logOut() {
-        this.logged_in = !this.logged_in
+        this.logged_in = !this.logged_in;
       }
     }
   }

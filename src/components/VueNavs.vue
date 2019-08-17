@@ -3,75 +3,54 @@
     <!-- Side Bar -->
     <div id="sidebar" style="display:none">
       <!-- Menu -->
-      <aside class="menu">
-        <p class="menu-label">Menu</p>
-        <div class="has-text-centered">
-          <figure class="image is-64x64 is-inline-block">
-            <img class="is-rounded" :src="user.avatar" />
-          </figure>
+      <aside>
+        <div class="side-bar-header">
+          <p class="menu-label">Menu</p>
+          <div class="has-text-centered">
+            <figure class="image is-64x64 is-inline-block">
+              <img class="is-rounded" :src="user.avatar" />
+            </figure>
+          </div>
+          <hr />
+          <p class="user-info has-background-grey-lighter">
+            {{ user.email }} | {{ user.role }}
+          </p>
+          <hr />
         </div>
-        <hr />
-        <p class="user-info has-background-grey-lighter">
-          {{ user.email }} | {{ user.role }}
-        </p>
-        <hr />
         <!-- Menu items-->
-        <template>
+        <menu-item :menu-items="menuItems" v-on:toggle-menu="toggleMenu" />
+        <!-- Logged In menu -->
+        <hr />
+        <div class="is-hidden-desktop">
           <ul class="menu-list">
-            <li v-for="menu_item in menuItems" :key="menu_item.header_title">
-              <router-link
-                :to="menu_item.header_route"
-                v-on:click.native="openSubMenu"
-              >
+            <li v-for="loggedInItem in loggedInItems" :key="loggedInItem.name">
+              <router-link :to="loggedInItem.route">
                 <div class="is-clearfix" style="width: 100%">
                   <div class="is-pulled-left" style="width: 14%">
                     <span class="icon">
-                      <i
-                        :class="`${menu_item.icon_type} ${menu_item.icon_name}`"
-                        size="lg"
-                      ></i>
+                      <i :class="loggedInItem.icon" size="lg"></i>
                     </span>
                   </div>
                   <div class="is-pulled-left" style="width: 86%">
-                    {{ menu_item.header_title }}
+                    {{ loggedInItem.name }}
                   </div>
                 </div>
               </router-link>
-              <div
-                :id="
-                  `${menu_item.header_title
-                    .toLowerCase()
-                    .replace(/\W/gi, '-')}-items`
-                "
-                class="sub-menu"
-                style="display:none"
-                v-if="menu_item.hasOwnProperty('sub_menus')"
-                data-open="false"
-                :data-parent="
-                  `${menu_item.header_title.toLowerCase().replace(/\W/gi, '-')}`
-                "
-              >
-                <ul>
-                  <li
-                    v-for="sub_menu_item in menu_item.sub_menus"
-                    :key="sub_menu_item.name"
-                  >
-                    <router-link
-                      :id="
-                        `${sub_menu_item.name
-                          .toLowerCase()
-                          .replace(/\W/gi, '-')}-sub-menu-items`
-                      "
-                      :to="sub_menu_item.route"
-                      v-on:click.native="toggleMenu"
-                      >{{ sub_menu_item.name }}</router-link
-                    >
-                  </li>
-                </ul>
-              </div>
+            </li>
+            <li>
+              <router-link to="#" @click.native="logOut()">
+                <div class="is-clearfix" style="width: 100%">
+                  <div class="is-pulled-left" style="width: 14%">
+                    <span class="icon">
+                      <i class="fas fa-sign-out-alt" size="lg"></i>
+                    </span>
+                  </div>
+                  <div class="is-pulled-left" style="width: 86%">Log Out</div>
+                </div>
+              </router-link>
             </li>
           </ul>
-        </template>
+        </div>
       </aside>
     </div>
     <!-- Nav Bar -->
@@ -94,6 +73,14 @@
         <!-- Nav Bar content -->
         <template v-if="!loggedIn">
           <router-link class="navbar-item" to="/">VUE NAVS</router-link>
+          <div
+            class="navbar-burger burger"
+            data-target="navbarExampleTransparentExample"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </template>
         <template v-else>
           <router-link class="navbar-item" to="/">
@@ -101,48 +88,38 @@
               {{ site.name }}
             </p>
           </router-link>
+          <div
+            class="navbar-burger burger is-hidden-touch"
+            data-target="navbarExampleTransparentExample"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </template>
-        <div
-          class="navbar-burger burger"
-          data-target="navbarExampleTransparentExample"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-end" v-if="loggedIn">
           <div class="navbar-item">
             <!-- Slot for logged in menu items -->
             <div class="columns">
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <a
-                      href="#"
-                      @click="logOut"
-                      class="nav-menu-item has-dropdown is-hoverable"
-                    >
-                      <p class="icon">
-                        <i class="fas fa-user" size="lg"></i>
-                      </p>
-                      <p class="heading">Account</p>
-                    </a>
-                  </div>
-                </div>
+              <div
+                v-for="loggedInItem in loggedInItems"
+                :key="loggedInItem.name"
+                class="column"
+              >
+                <nav-menu-item
+                  :name="loggedInItem.name"
+                  :icon="loggedInItem.icon"
+                  :route="loggedInItem.route"
+                />
               </div>
               <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <a href="#" @click="logOut" class="nav-menu-item">
-                      <p class="icon">
-                        <i class="fas fa-sign-out-alt" size="lg"></i>
-                      </p>
-                      <p class="heading">Log Out</p>
-                    </a>
-                  </div>
-                </div>
+                <nav-menu-item
+                  name="Log Out"
+                  icon="fas fa-sign-out-alt"
+                  @click.native="logOut()"
+                />
               </div>
             </div>
           </div>
@@ -151,77 +128,16 @@
           <div class="navbar-item">
             <!-- Slot for logged out menu items -->
             <div class="columns">
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/" class="nav-menu-item">
-                      <span class="icon">
-                        <i class="fas fa-home" size="lg"></i>
-                      </span>
-                      <p class="heading">Home</p>
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/welcome" class="nav-menu-item">
-                      <span class="icon">
-                        <i class="fas fa-chart-pie" size="lg"></i>
-                      </span>
-                      <p class="heading">Features</p>
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/pricing" class="nav-menu-item">
-                      <span class="icon">
-                        <i class="fas fa-dollar-sign" size="lg"></i>
-                      </span>
-                      <p class="heading">Pricing</p>
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/faq" class="nav-menu-item">
-                      <span class="icon">
-                        <i class="fas fa-question" size="lg"></i>
-                      </span>
-                      <p class="heading">FAQ</p>
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/register" class="nav-menu-item">
-                      <span class="icon">
-                        <i class="fas fa-university" size="lg"></i>
-                      </span>
-                      <p class="heading">Register</p>
-                    </router-link>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="level">
-                  <div class="level-item has-text-centered">
-                    <router-link to="/login_in" class="nav-menu-item">
-                      <p class="icon">
-                        <i class="fas fa-sign-in-alt" size="lg"></i>
-                      </p>
-                      <p class="heading">Log In</p>
-                    </router-link>
-                  </div>
-                </div>
+              <div
+                v-for="loggedOutItem in loggedOutItems"
+                :key="loggedOutItem.name"
+                class="column"
+              >
+                <nav-menu-item
+                  :name="loggedOutItem.name"
+                  :icon="loggedOutItem.icon"
+                  :route="loggedOutItem.route"
+                />
               </div>
             </div>
           </div>
@@ -232,12 +148,14 @@
 </template>
 
 <script>
+import NavMenuItem from "@/components/NavMenuItem.vue";
+import MenuItem from "@/components/MenuItem.vue";
+
 export default {
   name: "vue-navs",
   data() {
     return {
-      is_side_bar_open: false,
-      is_sub_menu_open: false
+      is_side_bar_open: false
     };
   },
   props: {
@@ -245,7 +163,23 @@ export default {
     loggedIn: Boolean,
     site: Object,
     user: Object,
-    menuItems: Array
+    menuItems: Array,
+    loggedInItems: {
+      type: Array,
+      default: () => {
+        return [{ name: "Account", icon: "fas fa-user", route: "/account" }];
+      }
+    },
+    loggedOutItems: {
+      type: Array,
+      default: () => {
+        return [
+          { name: "Home", icon: "fas fa-home", route: "/" },
+          { name: "Faq", icon: "fas fa-question", route: "/" },
+          { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
+        ];
+      }
+    }
   },
   methods: {
     logOut() {
@@ -337,52 +271,23 @@ export default {
         });
       }
     });
+  },
+  components: {
+    NavMenuItem,
+    MenuItem
   }
 };
 </script>
 
 <style lang="scss" scoped>
-// a {
-//   padding-right: 25px;
-// }
-
-// a:hover {
-//   color: rgb(92, 255, 127);
-// }
-
 .user-info {
   font-size: 0.85em;
   padding: 5px;
   margin-bottom: 5px;
 }
 
-p.icon,
-p.heading {
-  color: rgb(40, 42, 44);
-}
-
-.menu {
-  padding: 16px;
-}
-
-.sub-menu {
-  animation-name: slideDown;
-  -webkit-animation-name: slideDown;
-
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
-
-  animation-timing-function: ease;
-  -webkit-animation-timing-function: ease;
-
-  visibility: visible !important;
-}
-
-.animateNavleft {
-  animation-name: animateNavleft;
-  animation-duration: 0.6s;
-  animation-timing-function: ease;
-  visibility: visible !important;
+.side-bar-header {
+  padding: 16px 16px 0px 16px;
 }
 
 #sidebar {
@@ -398,7 +303,9 @@ p.heading {
 }
 
 #nav {
+  padding: 10px;
   opacity: 0.8;
+  position: relative;
   background: linear-gradient(to right, rgb(144, 202, 249), rgb(255, 255, 255));
   animation: animateleft 0.6s;
 }
@@ -411,61 +318,6 @@ p.heading {
   to {
     left: 0;
     opacity: 1;
-  }
-}
-
-@keyframes animateNavleft {
-  0% {
-    margin-left: -250px;
-    opacity: 0;
-  }
-}
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(8%);
-    opacity: 0.35;
-  }
-  65% {
-    transform: translateY(-4%);
-    opacity: 0.5;
-  }
-  80% {
-    transform: translateY(4%);
-    opacity: 0.6;
-  }
-  95% {
-    -webkit-transform: translateY(-2%);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(0%);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes slideDown {
-  0% {
-    -webkit-transform: translateY(-100%);
-  }
-  50% {
-    -webkit-transform: translateY(8%);
-  }
-  65% {
-    -webkit-transform: translateY(-4%);
-  }
-  80% {
-    -webkit-transform: translateY(4%);
-  }
-  95% {
-    -webkit-transform: translateY(-2%);
-  }
-  100% {
-    -webkit-transform: translateY(0%);
   }
 }
 </style>

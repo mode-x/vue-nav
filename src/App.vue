@@ -5,8 +5,10 @@
       :logged-in="logged_in"
       :site="site"
       :user="user"
-      v-on:log-out="logOut"
       :menu-items="menu_items"
+      :logged-in-items="logged_in_items"
+      :logged-out-items="logged_out_items"
+      v-on:log-out="logOut"
     />
   </div>
 </template>
@@ -27,34 +29,39 @@ export default {
 
       menu_items: [
         {
-          header_title: "Dashboard",
-          header_route: "/dashboard",
-          icon_type: "fas",
-          icon_name: "fa-tv"
+          name: "Dashboard",
+          icon: "fas fa-tv",
+          route: "/dashboard"
         },
         {
-          header_title: "Billing",
-          header_route: "/billing",
-          icon_type: "fas",
-          icon_name: "fa-dollar-sign"
+          name: "Billing",
+          icon: "fas fa-dollar-sign",
+          route: "/billing"
         },
         {
-          header_title: "Users",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "fa-users",
+          name: "Users",
+          icon: "fas fa-users",
+          route: "/",
           sub_menus: [
             { name: "Users", route: "/users" },
             { name: "Administrators", route: "/admin" }
           ]
         },
         {
-          header_title: "Preferences",
-          header_route: "/",
-          icon_type: "fas",
-          icon_name: "fa-cog",
+          name: "Preferences",
+          icon: "fas fa-cog",
+          route: "/",
           sub_menus: [{ name: "Settings", route: "/settings" }]
         }
+      ],
+      logged_in_items: [
+        { name: "Profile", icon: "fas fa-user", route: "/profile" },
+        { name: "Setting", icon: "fas fa-cog", route: "/setting" }
+      ],
+      logged_out_items: [
+        { name: "Home", icon: "fas fa-home", route: "/" },
+        { name: "Faq", icon: "fas fa-question", route: "/faq" },
+        { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
       ]
     };
   },
