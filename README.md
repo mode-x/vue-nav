@@ -30,27 +30,26 @@ yarn add bulma hamburgers vue-router
 1. After installation
 2. Add the following to main.js
 
-⋅⋅⋅```
+```
 import VueNavs from "vue-navs"
 
 import "@/assets/css/bulma.scss";
 
 Vue.component("vue-navs", VueNavs)
-
-````
+```
 
 3. Create a file _assets/css/bulma.scss_ and add these statements to it:
 
-⋅⋅⋅```
+```
 $hamburger-layer-width: 30px;
 @import "./../../../node_modules/vue-navs/dist/VueNavs.css";
 @import "./../../../node_modules/bulma/css/bulma.css";
 @import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
-````
+```
 
 4. In the parent component, your declaration should look like this:
 
-⋅⋅⋅```
+```
 <vue-navs
   :hamburger-type="hamburger_type"
   :logged-in="logged_in"
@@ -61,18 +60,17 @@ $hamburger-layer-width: 30px;
   :logged-out-items="logged_out_items"
   v-on:log-out="logOut"
 />
-
-````
+```
 
 5. Finally,
 
-⋅⋅⋅```
+```
 Add this to your index.html
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" />
 
 The component currently, uses fontawesome icons. Other icon libraries will be added soon.
-````
+```
 
 ### Props - default composition
 
