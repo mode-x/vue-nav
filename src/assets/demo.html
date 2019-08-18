@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VueNavs demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./VueNavs.umd.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="./VueNavs.css">
+    <link rel="stylesheet" href="./hamburgers.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <demo
+        :hamburger-type="hamburger_type"
+        :logged-in="logged_in"
+        :site="site"
+        :user="user"
+        :menu-items="menu_items"
+        :logged-in-items="logged_in_items"
+        :logged-out-items="logged_out_items"
+        v-on:log-out="logOut"
+      />
+    </div>
+    
+    <script>
+      new Vue({
+        router: new VueRouter(),
+        data() {
+          return {
+            hamburger_type: "hamburger--spin",
+            logged_in: true,
+            site: { name: "Pidasys" },
+            user: {
+              email: "myemail@github.com",
+              role: "admin",
+              avatar: "https://bulma.io/images/placeholders/128x128.png"
+            },
+    
+            menu_items: [
+              {
+                name: "Dashboard",
+                icon: "fas fa-tv",
+                route: "/dashboard"
+              },
+              {
+                name: "Billing",
+                icon: "fas fa-dollar-sign",
+                route: "/billing"
+              },
+              {
+                name: "Users",
+                icon: "fas fa-users",
+                route: "/",
+                sub_menus: [
+                  { name: "Users", route: "/users" },
+                  { name: "Administrators", route: "/admin" }
+                ]
+              },
+              {
+                name: "Preferences",
+                icon: "fas fa-cog",
+                route: "/",
+                sub_menus: [{ name: "Settings", route: "/settings" }]
+              }
+            ],
+            logged_in_items: [
+              { name: "Profile", icon: "fas fa-user", route: "/profile" },
+              { name: "Setting", icon: "fas fa-cog", route: "/setting" }
+            ],
+            logged_out_items: [
+              { name: "Home", icon: "fas fa-home", route: "/" },
+              { name: "Faq", icon: "fas fa-question", route: "/faq" },
+              { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
+            ]
+          }
+        },
+        methods: {
+          logOut() {
+            this.logged_in = !this.logged_in
+          }
+        },
+        components: {
+          demo: VueNavs
+        }
+      }).$mount("#app")
+    </script>
+  </body>
+</html>
+

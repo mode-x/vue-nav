@@ -42,9 +42,9 @@ Vue.component("vue-navs", VueNavs)
 
 ```
 $hamburger-layer-width: 30px;
-@import "./../../../node_modules/vue-navs/dist/VueNavs.css";
-@import "./../../../node_modules/bulma/css/bulma.css";
-@import "./../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+@import "~vue-navs/dist/VueNavs.css";
+@import "~bulma/css/bulma.css";
+@import "~hamburgers/_sass/hamburgers/hamburgers.scss";
 ```
 
 4. In the parent component, your declaration should look like this:
