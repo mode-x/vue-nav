@@ -4,34 +4,28 @@
     <div id="sidebar" style="display:none">
       <!-- Menu -->
       <aside>
-        <div class="side-bar-header">
+        <section class="side-bar-header">
           <slot name="avatar">
-            <div class="side-bar-header-avatar">
-              <p class="menu-label">Menu</p>
-              <div class="has-text-centered">
-                <figure class="image is-64x64 is-inline-block">
-                  <img class="is-rounded" :src="user.avatar" />
-                </figure>
-              </div>
+            <p class="menu-label">Menu</p>
+            <div class="has-text-centered">
+              <figure class="image is-64x64 is-inline-block">
+                <img class="is-rounded" :src="user.avatar" />
+              </figure>
             </div>
           </slot>
           <slot name="info">
-            <div class="side-bar-header-info">
-              <slot>
-                <hr />
-                <p class="user-info has-background-grey-lighter">
-                  {{ user.email }} | {{ user.role }}
-                </p>
-                <hr />
-              </slot>
-            </div>
+            <hr />
+            <p class="user-info has-background-grey-lighter">
+              {{ user.email }} | {{ user.role }}
+            </p>
+            <hr />
           </slot>
-        </div>
+        </section>
         <!-- Menu items-->
         <menu-item :menu-items="menuItems" v-on:toggle-menu="toggleMenu" />
         <!-- Logged In menu -->
-        <hr />
-        <div class="is-hidden-desktop">
+        <section class="is-hidden-desktop">
+          <hr />
           <ul class="menu-list">
             <li v-for="loggedInItem in loggedInItems" :key="loggedInItem.name">
               <router-link :to="loggedInItem.route">
@@ -60,7 +54,7 @@
               </router-link>
             </li>
           </ul>
-        </div>
+        </section>
       </aside>
     </div>
     <!-- Nav Bar -->
