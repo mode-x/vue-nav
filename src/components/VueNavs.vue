@@ -72,7 +72,7 @@
         </button>
         <!-- Nav Bar content -->
         <template v-if="!loggedIn">
-          <router-link class="navbar-item" to="/">VUE NAVS</router-link>
+          <router-link class="navbar-item" to="/">{{site.name}}</router-link>
           <div
             class="navbar-burger burger"
             data-target="navbarExampleTransparentExample"
