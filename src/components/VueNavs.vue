@@ -5,17 +5,27 @@
       <!-- Menu -->
       <aside>
         <div class="side-bar-header">
-          <p class="menu-label">Menu</p>
-          <div class="has-text-centered">
-            <figure class="image is-64x64 is-inline-block">
-              <img class="is-rounded" :src="user.avatar" />
-            </figure>
-          </div>
-          <hr />
-          <p class="user-info has-background-grey-lighter">
-            {{ user.email }} | {{ user.role }}
-          </p>
-          <hr />
+          <slot name="avatar">
+            <div class="side-bar-header-avatar">
+              <p class="menu-label">Menu</p>
+              <div class="has-text-centered">
+                <figure class="image is-64x64 is-inline-block">
+                  <img class="is-rounded" :src="user.avatar" />
+                </figure>
+              </div>
+            </div>
+          </slot>
+          <slot name="info">
+            <div class="side-bar-header-info">
+              <slot>
+                <hr />
+                <p class="user-info has-background-grey-lighter">
+                  {{ user.email }} | {{ user.role }}
+                </p>
+                <hr />
+              </slot>
+            </div>
+          </slot>
         </div>
         <!-- Menu items-->
         <menu-item :menu-items="menuItems" v-on:toggle-menu="toggleMenu" />
@@ -72,7 +82,7 @@
         </button>
         <!-- Nav Bar content -->
         <template v-if="!loggedIn">
-          <router-link class="navbar-item" to="/">{{site.name}}</router-link>
+          <router-link class="navbar-item" to="/">{{ site.name }}</router-link>
           <div
             class="navbar-burger burger"
             data-target="navbarExampleTransparentExample"
