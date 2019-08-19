@@ -76,7 +76,11 @@
         </button>
         <!-- Nav Bar content -->
         <template v-if="!loggedIn">
-          <router-link class="navbar-item" to="/">{{ site.name }}</router-link>
+          <router-link class="navbar-item" to="/">
+            <p class="title is-4" style="padding-bottom: 8px">
+              {{ site.brand }}
+            </p>
+          </router-link>
           <div
             class="navbar-burger burger"
             data-target="navbarExampleTransparentExample"

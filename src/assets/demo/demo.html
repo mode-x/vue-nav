@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VueNavs demo</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="./VueNavs.umd.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <link rel="stylesheet" href="./VueNavs.css">
-    <link rel="stylesheet" href="./hamburgers.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./VueNavs.css" />
+    <link rel="stylesheet" href="./../src/assets/demo/hamburgers.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
   <body>
     <div id="app">
@@ -23,9 +29,20 @@
         :logged-in-items="logged_in_items"
         :logged-out-items="logged_out_items"
         v-on:log-out="logOut"
-      />
+      >
+        <template v-slot:info>
+          <hr />
+          <p class="user-info has-background-grey-lighter">
+            {{ user.email }} | {{ user.role }}
+          </p>
+          <p class="user-info has-background-grey-lighter">
+            Balance | {{ user.balance }}
+          </p>
+          <hr />
+        </template>
+      </demo>
     </div>
-    
+
     <script>
       new Vue({
         router: new VueRouter(),
@@ -37,9 +54,10 @@
             user: {
               email: "myemail@github.com",
               role: "admin",
-              avatar: "https://bulma.io/images/placeholders/128x128.png"
+              avatar: "https://bulma.io/images/placeholders/128x128.png",
+              balance: "$120.00"
             },
-    
+
             menu_items: [
               {
                 name: "Dashboard",
@@ -90,4 +108,3 @@
     </script>
   </body>
 </html>
-
