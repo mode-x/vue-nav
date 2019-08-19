@@ -93,7 +93,7 @@ Below is the default composition of the props property of the component:
       return {
         hamburger_type: "hamburger--spin",
         logged_in: true,
-        site: { name: "Pidasys" },
+        site: { name: "Pidasys", brand: "VUE NAVS" },
         user: {
           email: "myemail@github.com",
           role: "admin",
