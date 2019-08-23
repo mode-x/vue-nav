@@ -8,7 +8,7 @@
       :menu-items="menu_items"
       :logged-in-items="logged_in_items"
       :logged-out-items="logged_out_items"
-      v-on:log-out="logOut"
+      @log-out="logOut"
     />
   </div>
 </template>
