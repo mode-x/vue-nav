@@ -1,6 +1,6 @@
 {
   "name": "vue-navs",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A composite navigation component for vue apps.",
   "main": "./dist/VueNavs.common.js",
   "repository": {
