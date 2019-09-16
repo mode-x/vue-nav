@@ -13,17 +13,12 @@
         </slot>
         <slot name="info">
           <hr />
-          <p class="user-info has-background-grey-lighter">
-            {{ user.email }} | {{ user.role }}
-          </p>
+          <p class="user-info has-background-grey-lighter">{{ user.email }} | {{ user.role }}</p>
           <hr />
         </slot>
       </section>
       <!-- Menu items-->
-      <menu-item
-        :menu-items="menuItems"
-        v-on:toggle-menu="$emit('toggle-menu')"
-      />
+      <menu-item :menu-items="menuItems" @toggle-menu="$emit('toggle-menu')" />
       <!-- Logged In menu -->
       <section class="is-hidden-desktop">
         <hr />
@@ -36,9 +31,7 @@
                     <i :class="loggedInItem.icon" size="lg"></i>
                   </span>
                 </div>
-                <div class="is-pulled-left" style="width: 86%">
-                  {{ loggedInItem.name }}
-                </div>
+                <div class="is-pulled-left" style="width: 86%">{{ loggedInItem.name }}</div>
               </div>
             </router-link>
           </li>

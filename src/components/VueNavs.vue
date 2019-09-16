@@ -1,7 +1,12 @@
 <template>
   <div id="vue-navs">
     <!-- Side Bar -->
-    <side-bar :lib="lib" :user="user" :menu-items="menuItems" />
+    <side-bar
+      :lib="lib"
+      :user="user"
+      :menu-items="menuItems"
+      @toggle-menu="toggleMenu"
+    />
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar

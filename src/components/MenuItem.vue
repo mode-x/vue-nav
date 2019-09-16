@@ -34,7 +34,7 @@
                     .replace(/\W/gi, '-')}-sub-menu-items`
                 "
                 :to="sub_menu_item.route"
-                v-on:click.native="$emit('toggle-menu')"
+                @click.native="$emit('toggle-menu')"
                 >{{ sub_menu_item.name }}</router-link
               >
             </li>
