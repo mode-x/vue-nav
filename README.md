@@ -51,7 +51,7 @@ $hamburger-layer-width: 30px;
 
 ```
 <vue-navs
-  :lib="lib"
+  :lib="bulma"
   :hamburger-type="hamburger_type"
   :logged-in="logged_in"
   :site="site"
