@@ -1,10 +1,11 @@
 <template>
   <div id="vue-navs">
     <!-- Side Bar -->
-    <side-bar :user="user" :menu-items="menuItems" />
+    <side-bar :lib="lib" :user="user" :menu-items="menuItems" />
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar
+      :lib="lib"
       :hamburger-type="hamburgerType"
       :site="site"
       :logged-in="loggedIn"
@@ -23,6 +24,7 @@ import SideBar from "@/components/SideBar.vue";
 export default {
   name: "vue-navs",
   props: {
+    lib: { type: String, default: "bulma" },
     hamburgerType: String,
     loggedIn: Boolean,
     site: Object,

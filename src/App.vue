@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <vue-navs
+      :lib="lib"
       :hamburger-type="hamburger_type"
       :logged-in="logged_in"
       :site="site"
@@ -18,6 +19,7 @@ export default {
   name: "app",
   data() {
     return {
+      lib: "bulma",
       hamburger_type: "hamburger--spin",
       logged_in: true,
       site: { name: "Pidasys", brand: "VUE NAVS" },

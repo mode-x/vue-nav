@@ -1,6 +1,6 @@
 # Vue Navs
 
-Vue Navs is a composite navigation component for Vue apps. The component makes it easy to integrate **Side-Nav** and **Nav-Bar** into a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button styles. In subsequent versions efforts will be made to make it work also with either:
+Vue Navs is a composite navigation component for Vue apps. The component makes it easy to integrate **Side-Nav** and **Nav-Bar** into a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button styles. I also intend to make it work out of the box with either:
 
 - Bootstrap
 - Materialize
@@ -51,6 +51,7 @@ $hamburger-layer-width: 30px;
 
 ```
 <vue-navs
+  :lib="lib"
   :hamburger-type="hamburger_type"
   :logged-in="logged_in"
   :site="site"
@@ -58,7 +59,7 @@ $hamburger-layer-width: 30px;
   :menu-items="menu_items"
   :logged-in-items="logged_in_items"
   :logged-out-items="logged_out_items"
-  v-on:log-out="logOut"
+  @log-out="logOut"
 />
 ```
 
@@ -69,11 +70,12 @@ Add this to your index.html
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" />
 
-The component currently, uses fontawesome icons. Other icon libraries will be added soon.
+The component currently, supports only fontawesome icons. Other icon libraries will be added soon.
 ```
 
 ### Props - default composition
 
+- lib is a String indicating the base css library. The default is "bulma". Also "bootstrap" and "materilaize" in view.
 - hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
 - logged-in is a Boolean.
 - site is an Object.
