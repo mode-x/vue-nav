@@ -54,6 +54,7 @@
               class="column"
             >
               <nav-menu-item
+                :logged-out="false"
                 :name="loggedInItem.name"
                 :icon="loggedInItem.icon"
                 :route="loggedInItem.route"
@@ -79,6 +80,7 @@
               class="column"
             >
               <nav-menu-item
+                :logged-out="true"
                 :name="loggedOutItem.name"
                 :icon="loggedOutItem.icon"
                 :route="loggedOutItem.route"
