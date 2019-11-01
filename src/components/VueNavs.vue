@@ -6,6 +6,7 @@
       :user="user"
       :menu-items="menuItems"
       @toggle-menu="toggleMenu"
+      @log-out="logOut"
     />
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->

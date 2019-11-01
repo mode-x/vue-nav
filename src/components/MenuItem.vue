@@ -106,7 +106,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sub-menu {
   animation-name: slideDown;
   -webkit-animation-name: slideDown;

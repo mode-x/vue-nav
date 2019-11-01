@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav" class="navbar is-transparent is-fixed-top" data-open="false">
+  <nav id="nav" class="navbar is-fixed-top" data-open="false">
     <div class="navbar-brand">
       <!-- Hamburger button -->
       <button
@@ -127,12 +127,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-#nav {
+<style lang="scss">
+.navbar {
   padding: 10px;
   opacity: 0.8;
   position: relative;
-  background: linear-gradient(to right, rgb(144, 202, 249), rgb(255, 255, 255));
+  background: linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255));
   animation: animateleft 0.6s;
 }
 </style>
