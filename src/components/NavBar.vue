@@ -1,6 +1,5 @@
 <template>
-  <nav id="nav" class="navbar is-fixed-top" data-open="false">
-    <div class="navbar-brand">
+<div id="nav-bar" v-bind:style="navBar" class="navbar" data-open="false">
       <!-- Hamburger button -->
       <button
         id="hamburger-btn"
@@ -8,93 +7,21 @@
         type="button"
         aria-label="Menu"
         aria-controls="navigation"
-        @click="$emit('toggle-menu')"
+        @click="$emit('toggle-side-bar')"
         v-if="loggedIn"
       >
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      <!-- Nav Bar content -->
-      <template v-if="!loggedIn">
-        <router-link class="navbar-item" to="/">
-          <p class="title is-4" style="padding-bottom: 8px">{{ site.brand }}</p>
-        </router-link>
-        <div
-          class="navbar-burger burger"
-          data-target="navbarExampleTransparentExample"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </template>
-      <template v-else>
-        <router-link class="navbar-item" to="/">
-          <p class="title is-4" style="padding-bottom: 8px">{{ site.name }}</p>
-        </router-link>
-        <div
-          class="navbar-burger burger is-hidden-touch"
-          data-target="navbarExampleTransparentExample"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </template>
-    </div>
-    <div id="navbarExampleTransparentExample" class="navbar-menu">
-      <div class="navbar-end" v-if="loggedIn">
-        <div class="navbar-item">
-          <!-- Slot for logged in menu items -->
-          <div class="columns">
-            <div
-              v-for="loggedInItem in loggedInItems"
-              :key="loggedInItem.name"
-              class="column"
-            >
-              <nav-menu-item
-                :logged-out="false"
-                :name="loggedInItem.name"
-                :icon="loggedInItem.icon"
-                :route="loggedInItem.route"
-              />
-            </div>
-            <div class="column">
-              <nav-menu-item
-                name="Log Out"
-                icon="fas fa-sign-out-alt"
-                @click.native="$emit('log-out')"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-end" v-else>
-        <div class="navbar-item">
-          <!-- Slot for logged out menu items -->
-          <div class="columns">
-            <div
-              v-for="loggedOutItem in loggedOutItems"
-              :key="loggedOutItem.name"
-              class="column"
-            >
-              <nav-menu-item
-                :logged-out="true"
-                :name="loggedOutItem.name"
-                :icon="loggedOutItem.icon"
-                :route="loggedOutItem.route"
-              />
-            </div>
-          </div>
-        </div>
+      <div id="nav-menu-container">
+        <div>Login</div>
       </div>
     </div>
-  </nav>
 </template>
 
 <script>
-import NavMenuItem from "@/components/NavMenuItem.vue";
+// import NavMenuItem from "@/components/NavMenuItem.vue";
 
 export default {
   name: "NavBar",
@@ -103,7 +30,8 @@ export default {
     loggedIn: Boolean,
     site: Object,
     loggedInItems: Array,
-    loggedOutItems: Array
+    loggedOutItems: Array,
+    navBar: Object
   },
   mounted() {
     document.addEventListener("DOMContentLoaded", () => {
@@ -124,17 +52,19 @@ export default {
     });
   },
   components: {
-    NavMenuItem
+    // NavMenuItem
   }
 };
 </script>
 
 <style lang="scss">
+#nav-menu-container{
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: right;
+  justify-content: right;
+}
 .navbar {
-  padding: 10px;
-  opacity: 0.8;
-  position: relative;
-  background: linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255));
-  animation: animateleft 0.6s;
+  float: right;
 }
 </style>

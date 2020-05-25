@@ -1,23 +1,28 @@
 <template>
   <div id="vue-navs">
     <!-- Side Bar -->
-    <side-bar
+      <transition name="side-bar">
+        <div id="side-bar" v-if="show" v-bind:style="sideBar">Side Bar</div>
+      </transition>
+    
+    <!-- <side-baru
       :lib="lib"
       :user="user"
       :menu-items="menuItems"
-      @toggle-menu="toggleMenu"
+      @toggle-side-bar="toggleSideBar"
       @log-out="logOut"
-    />
+    /> -->
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar
       :lib="lib"
+      :nav-bar="navBar"
       :hamburger-type="hamburgerType"
       :site="site"
       :logged-in="loggedIn"
       :logged-in-items="loggedInItems"
       :logged-out-items="loggedOutItems"
-      @toggle-menu="toggleMenu"
+      @toggle-side-bar="toggleSideBar"
       @log-out="logOut"
     />
   </div>
@@ -29,6 +34,21 @@ import SideBar from "@/components/SideBar.vue";
 
 export default {
   name: "vue-navs",
+  data() {
+    return {
+      show: false,
+      sideBar: {
+        width: "0px",
+        height: "100%",
+        backgroundColor: "#000",
+        position: "fixed",
+        zIndex: 1000,
+        overflow: "auto",
+        top: this.sideBarTopOffset,
+        boxShadow: `0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)`
+      }
+    };
+  },
   props: {
     lib: { type: String, default: "bulma" },
     hamburgerType: String,
@@ -36,6 +56,14 @@ export default {
     site: Object,
     user: Object,
     menuItems: Array,
+    sideBarTopOffset: {
+      type: String,
+      default: "80px"
+    },
+    sideBarType: {
+      type: String,
+      default: "below-header"
+    },
     loggedInItems: {
       type: Array,
       default: () => {
@@ -51,52 +79,73 @@ export default {
           { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
         ];
       }
+    },
+    navBar: {
+      type: Object,
+      default: () => {
+        return {
+          width: "100%",
+          height: "80px",
+          padding: "10px",
+          opacity: "0.8",
+          background: `linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255))`
+        };
+      }
     }
   },
+  computed(){
+
+  },
   methods: {
+    toggleSideBar() {
+      document.getElementById("hamburger-btn").classList.toggle("is-active");
+      this.show = !this.show;
+      this.sideBar.width = "250px";
+
+      const navBar = document.getElementById("nav-bar");
+
+      console.log(navBar.clientHeight)
+
+      // navBar.style.transitionProperty = "width"
+      // navBar.style.transitionDuration= "0.5s"
+
+      // if (navBar.getAttribute("data-open") === "false"){
+      //   navBar.style.transitionTimingFunction = "ease"
+      //   navBar.style.width = `${navBar.clientWidth - 250}px`
+      //   navBar.setAttribute("data-open", true);
+      // }else{
+      //   navBar.style.transitionTimingFunction = "ease-in-out"
+      //   navBar.style.width = "100%"
+      //   navBar.setAttribute("data-open", false);
+      // }
+    },
     logOut() {
       this.$emit("log-out");
       if (document.getElementById("nav").getAttribute("data-open") === "true") {
         document.getElementById("hamburger-btn").click();
       }
     },
-    toggleMenu() {
-      document.getElementById("hamburger-btn").classList.toggle("is-active");
-      const nav = document.getElementById("nav");
-      const sidebar = document.getElementById("sidebar");
-      // const overlay = document.getElementsByClassName("modal-background")[0];
-      if (this.is_side_bar_open) {
-        nav.style.marginLeft = "0px";
-        nav.setAttribute("data-open", "false");
-        sidebar.style.display = "none";
-        // overlay.style.display = "none";
-      } else {
-        // overlay.style.marginLeft = "250px";
-        // overlay.style.display = "block";
-        sidebar.style.width = "250px";
-        sidebar.style.display = "block";
-        nav.style.marginLeft = "250px";
-        nav.setAttribute("data-open", "true");
-      }
-      this.is_side_bar_open = !this.is_side_bar_open;
-    }
   },
   components: {
     NavBar,
-    SideBar
+    // SideBar
   }
 };
 </script>
 
 <style lang="scss">
-@keyframes animateleft {
+.side-bar-enter-active {
+  animation: side-bar 0.5s;
+}
+.side-bar-leave-active {
+  animation: side-bar 0.5s ease-in-out reverse;
+}
+@keyframes side-bar {
   from {
-    left: -250px;
-    opacity: 0;
+    width: 0px;
   }
   to {
-    left: 0;
-    opacity: 1;
+    width: 250px;
   }
 }
 </style>
