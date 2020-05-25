@@ -1,37 +1,103 @@
 <template>
-<div id="nav-bar" v-bind:style="navBar" class="navbar" data-open="false">
+  <div id="nav-container">
+    <transition name="side-bar-container">
+      <div id="side-bar-container" v-if="showSideBar" v-bind:style="sideBarContainerStyle">
+      </div>
+    </transition>
+      <div id="nav-bar" v-bind:style="navBarStyle" data-open="false">
+    <div class="columns is-gapless is-mobile">
       <!-- Hamburger button -->
-      <button
-        id="hamburger-btn"
-        :class="`hamburger ${hamburgerType} navbar-item`"
-        type="button"
-        aria-label="Menu"
-        aria-controls="navigation"
-        @click="$emit('toggle-side-bar')"
-        v-if="loggedIn"
-      >
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
-        </span>
-      </button>
-      <div id="nav-menu-container">
-        <div>Login</div>
+      <div class="column is-narrow">
+        <button
+          id="hamburger-btn"
+          :class="`hamburger ${hamburgerType} navbar-item`"
+          type="button"
+          aria-label="Menu"
+          aria-controls="navigation"
+          @click="$emit('toggle-side-bar')"
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div class="column">
+        <router-link to="/">
+          <p class="title is-4" style="padding: 10px;">
+            {{ site.name }}
+          </p>
+        </router-link>
+      </div>
+      <div class="column is-narrow is-hidden-touch">
+        <div class="columns">
+          <div
+          v-for="navBarItem in navBarItems"
+          :key="navBarItem.name"
+          class="column is-narrow"
+        >
+          <nav-menu-item
+            :logged-out="false"
+            :name="navBarItem.name"
+            :icon="navBarItem.icon"
+            :route="navBarItem.route"
+          />
+        </div>
+        <div class="column is-narrow">
+          <nav-menu-item
+            name="Log Out"
+            icon="fas fa-sign-out-alt"
+            @click.native="$emit('log-out')"
+          />
+        </div>
+        </div>
       </div>
     </div>
+  </div>
+  </div>
 </template>
 
 <script>
-// import NavMenuItem from "@/components/NavMenuItem.vue";
+import NavMenuItem from "@/components/NavMenuItem.vue";
 
 export default {
   name: "NavBar",
+  data(){
+    return {
+      sideBarContainerStyle: {
+      minWidth: "0px",
+      height: "80px",
+      backgroundColor: "#000",
+      }
+
+    }
+  },
   props: {
     hamburgerType: String,
-    loggedIn: Boolean,
     site: Object,
-    loggedInItems: Array,
-    loggedOutItems: Array,
-    navBar: Object
+    showSideBar: Boolean,
+    navBarItems: Array,
+    navBarStyle: {
+      type: Object,
+      default: () => {
+        return {
+          width: "100%",
+          height: "80px",
+          padding: "10px",
+          opacity: "0.8",
+          background: `linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255))`,
+          float: "right"
+        };
+      }
+    }
+  },
+    watch: {
+    showSideBar(n, o) {
+      if (n) {
+        this.sideBarContainerStyle.minWidth = "250px";
+      }else{
+        this.sideBarContainerStyle.minWidth = "0px";
+      }
+    }
   },
   mounted() {
     document.addEventListener("DOMContentLoaded", () => {
@@ -52,19 +118,38 @@ export default {
     });
   },
   components: {
-    // NavMenuItem
+    NavMenuItem
   }
 };
 </script>
 
-<style lang="scss">
-#nav-menu-container{
+<style lang="scss" scoped>
+#nav-container{
   display: flex;
-  flex-direction: row-reverse;
-  align-content: right;
-  justify-content: right;
+  flex-direction: row;
 }
-.navbar {
-  float: right;
+
+#nav-container > #side-bar-container{
+  min-width: 250px;
 }
+
+#nav-container > #nav-bar{
+  flex: auto;
+}
+
+.side-bar-container-enter-active {
+  animation: side-bar-container 0.5s;
+}
+.side-bar-container-leave-active {
+  animation: side-bar-container 0.5s ease-in-out reverse;
+}
+@keyframes side-bar-container {
+  from {
+    min-width: 0px;
+  }
+  to {
+    min-width: 250px;
+  }
+}
+
 </style>

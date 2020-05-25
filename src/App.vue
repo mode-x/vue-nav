@@ -3,12 +3,11 @@
     <vue-navs
       :lib="lib"
       :hamburger-type="hamburger_type"
-      :logged-in="logged_in"
       :site="site"
       :user="user"
-      :menu-items="menu_items"
-      :logged-in-items="logged_in_items"
-      :logged-out-items="logged_out_items"
+      :side-bar-type="side_bar_type"
+      :side-bar-items="side_bar_items"
+      :nav-bar-items="nav_bar_items"
       @log-out="logOut"
     />
   </div>
@@ -20,16 +19,15 @@ export default {
   data() {
     return {
       lib: "bulma",
+      side_bar_type: "above",
       hamburger_type: "hamburger--spin",
-      logged_in: true,
-      site: { name: "Pidasys", brand: "VUE NAVS" },
+      site: { name: "Pidasys" },
       user: {
-        email: "myemail@github.com",
+        email: "mode-x@github.com",
         role: "admin",
         avatar: "https://bulma.io/images/placeholders/128x128.png"
       },
-
-      menu_items: [
+      side_bar_items: [
         {
           name: "Dashboard",
           icon: "fas fa-tv",
@@ -56,21 +54,35 @@ export default {
           sub_menus: [{ name: "Settings", route: "/settings" }]
         }
       ],
-      logged_in_items: [
+      nav_bar_items: [
         { name: "Profile", icon: "fas fa-user", route: "/profile" },
         { name: "Setting", icon: "fas fa-cog", route: "/setting" }
-      ],
-      logged_out_items: [
-        { name: "Home", icon: "fas fa-home", route: "/" },
-        { name: "Faq", icon: "fas fa-question", route: "/faq" },
-        { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
       ]
     };
   },
   methods: {
     logOut() {
-      this.logged_in = !this.logged_in;
+      alert("Logged out!!!");
     }
   }
 };
 </script>
+
+<style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
+a.nav-menu-item:hover {
+  color: orange;
+}
+
+.menu-list a {
+  color: #a8a8a8 !important;
+}
+
+.menu-list a:hover {
+  background-color: orange !important; 
+  color: #2c2c2c !important;
+}
+</style>

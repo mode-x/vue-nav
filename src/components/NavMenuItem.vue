@@ -36,3 +36,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.nav-menu-item {
+  padding: 8px;
+}
+</style>
