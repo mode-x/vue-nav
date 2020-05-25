@@ -132,7 +132,7 @@ Below is the default composition of the props property of the component:
     },
     methods: {
       logOut() {
-        You could define custom actions here.
+        Define custom actions here.
         For instance you can redirect to a login page:
         this.$router.replace("/login")
       }
