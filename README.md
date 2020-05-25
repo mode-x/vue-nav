@@ -1,9 +1,6 @@
 # Vue Navs
 
-Vue Navs is a composite navigation component for Vue apps. The component makes it easy to integrate **Side-Nav** and **Nav-Bar** into a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button styles. I also intend to make it work out of the box with either:
-
-- Bootstrap
-- Materialize
+Vue Navs is a composite navigation component for Vue apps. The component makes it easy to integrate **Side-Nav** and **Nav-Bar** into a Vue project. Currently, the component is designed to work with [Bulma CSS framework](https://bulma.io/) and uses [Hamburgers](https://jonsuh.com/hamburgers/) for menu button styles.
 
 # Installation
 
@@ -51,14 +48,13 @@ $hamburger-layer-width: 30px;
 
 ```
 <vue-navs
-  :lib="bulma"
+  :lib="lib"
   :hamburger-type="hamburger_type"
-  :logged-in="logged_in"
   :site="site"
   :user="user"
-  :menu-items="menu_items"
-  :logged-in-items="logged_in_items"
-  :logged-out-items="logged_out_items"
+  :side-bar-type="side_bar_type"
+  :side-bar-items="side_bar_items"
+  :nav-bar-items="nav_bar_items"
   @log-out="logOut"
 />
 ```
@@ -75,14 +71,14 @@ The component currently, supports only fontawesome icons. Other icon libraries w
 
 ### Props - default composition
 
-- lib is a String indicating the base css library. The default is "bulma". Also "bootstrap" and "materilaize" in view.
+- lib is a String indicating the base css library. The default is "bulma".
 - hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
 - logged-in is a Boolean.
 - site is an Object.
 - user is an Object.
-- menu-items is an Object.
-- logged-in-items is an Array.
-- logged-out-items is an Array.
+- side-bar-type is String specifying the type. It is either "above" or "below".
+- side-bar-items is an Array.
+- nav-bar-items is an Object.
 - logOut is a Function.
 
 Below is the default composition of the props property of the component:
@@ -90,18 +86,18 @@ Below is the default composition of the props property of the component:
 ```
 <script>
   export default {
-    name: "Your Parent",
+    name: "app",
     data() {
       return {
         hamburger_type: "hamburger--spin",
         logged_in: true,
-        site: { name: "Pidasys", brand: "VUE NAVS" },
+        site: { name: "VUE NAVS" },
         user: {
-          email: "myemail@github.com",
+          email: "mode-x@github.com",
           role: "admin",
           avatar: "https://bulma.io/images/placeholders/128x128.png"
         },
-        menu_items: [
+        side_bar_items: [
           {
             name: "Dashboard",
             icon: "fas fa-tv",
@@ -128,31 +124,22 @@ Below is the default composition of the props property of the component:
             sub_menus: [{ name: "Settings", route: "/settings" }]
           }
         ],
-        logged_in_items: [
+        nav_bar_items: [
           { name: "Profile", icon: "fas fa-user", route: "/profile" },
           { name: "Setting", icon: "fas fa-cog", route: "/setting" }
-        ],
-        logged_out_items: [
-          { name: "Home", icon: "fas fa-home", route: "/" },
-          { name: "Faq", icon: "fas fa-question", route: "/faq" },
-          { name: "Log In", icon: "fas fa-sign-in-alt", route: "/" }
         ]
       };
     },
     methods: {
       logOut() {
-        this.logged_in = !this.logged_in;
+        You could define custom actions here.
+        For instance you can redirect to a login page:
+        this.$router.replace("/login")
       }
     }
   }
 </script>
 ```
-
-# Features
-
-1. Provides logged in and logged out templates.
-2. Built-in capability for flexible use of either Bulma (default), Bootstrap or Materialize css libraries (WIP).
-3. Easy customization of hamburger button style and more.
 
 # Licence
 
