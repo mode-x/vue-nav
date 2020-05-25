@@ -116,11 +116,15 @@ export default {
 
 @keyframes slideDown {
   0% {
-    transform: translateY(-50%);
+    transform: translateX(-25%);
     opacity: 0;
   }
+  80% {
+    transform: translateX(0%);
+    opacity: 0.5;
+  }
   100% {
-    transform: translateY(0%);
+    transform: translateX(0%);
     opacity: 1;
   }
 }

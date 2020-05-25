@@ -1,7 +1,7 @@
 <template>
   <transition name="side-bar">
     <div id="side-bar" v-if="showSideBar" v-bind:style="sideBarStyle">
-      <aside style="min-width: 250px;">
+      <aside style="max-width: 250px; min-width: 250px;">
         <section class="side-bar-header">
           <slot name="avatar">
             <p class="menu-label">Menu</p>
@@ -83,7 +83,8 @@ export default {
           backgroundColor: "#000",
           position: "fixed",
           zIndex: 1000,
-          overflow: "auto",
+          overflowY: "auto",
+          overflowX: "hidden",
           top: "0px",
           boxShadow: `0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)`
         };
@@ -129,7 +130,7 @@ export default {
 }
 
 aside{
-  padding-bottom: 200px;
+  padding-bottom: 100px;
 }
 
 .side-bar-enter-active {

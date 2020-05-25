@@ -9,7 +9,19 @@
       :side-bar-items="side_bar_items"
       :nav-bar-items="nav_bar_items"
       @log-out="logOut"
-    />
+    >
+    <template v-slot:info>
+        <hr />
+        <p class="user-info has-background-grey-lighter">
+          {{ user.email }} | {{ user.role }}
+        </p>
+        <p class="user-info has-background-grey-lighter">
+          Second Term 2019 - 2020
+        </p>
+        <p class="user-info has-background-grey-lighter">120 days remaining</p>
+        <hr />
+      </template>
+    </vue-navs>
   </div>
 </template>
 
