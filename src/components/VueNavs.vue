@@ -80,7 +80,6 @@ export default {
     },
     logOut() {
       this.$emit("log-out");
-      this.$router.go()
     }
   },
   components: {
