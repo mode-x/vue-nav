@@ -121,7 +121,7 @@ export default {
   }
   80% {
     transform: translateX(0%);
-    opacity: 0.5;
+    opacity: 0.35;
   }
   100% {
     transform: translateX(0%);
