@@ -121,7 +121,6 @@ export default {
 .user-info {
   font-size: 0.85em;
   padding: 5px;
-  margin-top: 16px;
   margin-bottom: 5px;
 }
 

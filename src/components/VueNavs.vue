@@ -11,7 +11,12 @@
       :side-bar-items="sideBarItems"
       @toggle-side-bar="toggleSideBar"
       @log-out="logOut"
-    />
+    >
+    <template v-slot:info>
+      <slot name="side-bar-info"></slot>
+    </template>
+    </side-bar>
+    
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar

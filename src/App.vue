@@ -10,15 +10,15 @@
       :nav-bar-items="nav_bar_items"
       @log-out="logOut"
     >
-    <template v-slot:info>
-        <hr />
-        <p class="user-info has-background-grey-lighter">
+    <template v-slot:side-bar-info>
+      <hr />
+        <p class="user-slot has-background-grey-lighter">
           {{ user.email }} | {{ user.role }}
         </p>
-        <p class="user-info has-background-grey-lighter">
+        <p class="user-slot has-background-grey-lighter">
           Second Term 2019 - 2020
         </p>
-        <p class="user-info has-background-grey-lighter">120 days remaining</p>
+        <p class="user-slot has-background-grey-lighter">120 days remaining</p>
         <hr />
       </template>
     </vue-navs>
@@ -83,6 +83,12 @@ export default {
 <style lang="scss">
 * {
   box-sizing: border-box;
+}
+
+.user-slot {
+  font-size: 0.85em;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 a.nav-menu-item:hover {
