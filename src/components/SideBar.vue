@@ -21,7 +21,7 @@
         <!-- Menu items-->
         <menu-item
           :menu-items="sideBarItems"
-          @toggle-menu="$emit('toggle-side-bar')"
+          @toggle-side-bar="$emit('toggle-side-bar')"
         />
         <!-- Logged In menu -->
         <section class="is-hidden-desktop">

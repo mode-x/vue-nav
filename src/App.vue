@@ -50,7 +50,7 @@ export default {
         {
           name: "Users",
           icon: "fas fa-users",
-          route: "/",
+          route: "#",
           sub_menus: [
             { name: "Users", route: "/users" },
             { name: "Administrators", route: "/admin" }

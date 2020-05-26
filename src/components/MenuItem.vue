@@ -15,7 +15,7 @@
           </div>
         </router-link>
         <div
-          :id="`${menuItem.name.toLowerCase().replace(/\W/gi, '-')}-items`"
+          :id="`${menuItem.name.toLowerCase().replace(/\W/gi, '-')}-sub-menu`"
           class="sub-menu"
           style="display:none"
           v-if="menuItem.hasOwnProperty('sub_menus')"
@@ -34,7 +34,7 @@
                     .replace(/\W/gi, '-')}-sub-menu-items`
                 "
                 :to="sub_menu_item.route"
-                @click.native="$emit('toggle-menu')"
+                @click.native="$emit('toggle-side-bar')"
                 >{{ sub_menu_item.name }}</router-link
               >
             </li>
@@ -61,12 +61,15 @@ export default {
         menuItem => menuItem.sub_menus && menuItem.name === name
       );
 
+      console.log(menus)
+
       if (menus.length === 0) {
-        document.getElementById("hamburger-btn").click();
+        this.$emit('toggle-side-bar')
         // Close others
         const others = document.getElementsByClassName("sub-menu");
         for (let i = 0; i < others.length; i++) {
           const element = others[i];
+          console.log(element.getAttribute("id"))
           document.getElementById(element.getAttribute("id")).style.display =
             "none";
           document
@@ -75,7 +78,7 @@ export default {
         }
         return;
       } else {
-        const id = `${name.toLowerCase().replace(/\W/gi, "-")}-items`;
+        const id = `${name.toLowerCase().replace(/\W/gi, "-")}-sub-menu`;
         const isOpened = document.getElementById(id).getAttribute("data-open");
         if (isOpened === "true") {
           document.getElementById(id).style.display = "none";
@@ -108,13 +111,13 @@ export default {
 
 <style lang="scss">
 .sub-menu {
-  animation-name: slideDown;
+  animation-name: slideIn;
   animation-duration: 1s;
   animation-timing-function: ease;
   visibility: visible !important;
 }
 
-@keyframes slideDown {
+@keyframes slideIn {
   0% {
     transform: translateX(-25%);
     opacity: 0;
