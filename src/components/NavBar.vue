@@ -43,7 +43,7 @@
           />
         </div>
         <div class="column is-narrow">
-          <router-link to="/" @click.native="$emit('log-out')">
+          <router-link to="#" @click.native="$emit('log-out')">
             <nav-menu-item
               name="Log Out"
               icon="fas fa-sign-out-alt"
