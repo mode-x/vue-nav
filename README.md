@@ -55,7 +55,6 @@ $hamburger-layer-width: 30px;
   :side-bar-type="side_bar_type"
   :side-bar-items="side_bar_items"
   :nav-bar-items="nav_bar_items"
-  @log-out="logOut"
 />
 ```
 
@@ -71,15 +70,12 @@ The component currently, supports only fontawesome icons. Other icon libraries w
 
 ### Props - default composition
 
-- lib is a String indicating the base css library. The default is "bulma".
 - hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
-- logged-in is a Boolean.
 - site is an Object.
 - user is an Object.
 - side-bar-type is String specifying the type. It is either "above" or "below".
 - side-bar-items is an Array.
 - nav-bar-items is an Object.
-- logOut is a Function.
 
 Below is the default composition of the props property of the component:
 
@@ -90,13 +86,13 @@ Below is the default composition of the props property of the component:
     data() {
       return {
         hamburger_type: "hamburger--spin",
-        logged_in: true,
         site: { name: "VUE NAVS" },
         user: {
           email: "mode-x@github.com",
           role: "admin",
           avatar: "https://bulma.io/images/placeholders/128x128.png"
         },
+        side_bar_type: "above",
         side_bar_items: [
           {
             name: "Dashboard",
@@ -126,7 +122,15 @@ Below is the default composition of the props property of the component:
         ],
         nav_bar_items: [
           { name: "Profile", icon: "fas fa-user", route: "/profile" },
-          { name: "Setting", icon: "fas fa-cog", route: "/setting" }
+          { name: "Setting", icon: "fas fa-cog", route: "/setting" },
+          {
+            name: "Logout",
+            icon: "fas fa-sign-out-alt",
+            route: "/home",
+            action: () => {
+              this.logOut();
+            }
+          }
         ]
       };
     },

@@ -1,14 +1,12 @@
 <template>
   <div id="app">
     <vue-navs
-      :lib="lib"
       :hamburger-type="hamburger_type"
       :site="site"
       :user="user"
       :side-bar-type="side_bar_type"
       :side-bar-items="side_bar_items"
       :nav-bar-items="nav_bar_items"
-      @log-out="logOut"
     >
       <template v-slot:side-bar-info>
         <hr />
@@ -30,8 +28,6 @@ export default {
   name: "app",
   data() {
     return {
-      lib: "bulma",
-      side_bar_type: "above",
       hamburger_type: "hamburger--spin",
       site: { name: "Pidasys" },
       user: {
@@ -39,6 +35,7 @@ export default {
         role: "admin",
         avatar: "https://bulma.io/images/placeholders/128x128.png"
       },
+      side_bar_type: "above",
       side_bar_items: [
         {
           name: "Dashboard",
