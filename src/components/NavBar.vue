@@ -23,7 +23,7 @@
       </div>
       <div class="column">
         <router-link to="/">
-          <p class="title is-4" style="padding: 10px;">
+          <p class="title is-4" style="padding: 5px;">
             {{ site.name }}
           </p>
         </router-link>
@@ -43,11 +43,12 @@
           />
         </div>
         <div class="column is-narrow">
-          <nav-menu-item
-            name="Log Out"
-            icon="fas fa-sign-out-alt"
-            @click.native="$emit('log-out')"
-          />
+          <router-link to="/" @click.native="$emit('log-out')">
+            <nav-menu-item
+              name="Log Out"
+              icon="fas fa-sign-out-alt"
+            />
+          </router-link>
         </div>
         </div>
       </div>

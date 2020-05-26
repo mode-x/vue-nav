@@ -42,7 +42,7 @@
               </router-link>
             </li>
             <li>
-              <router-link to="#" @click.native="$emit('log-out')">
+              <router-link to="/" @click.native="$emit('log-out')">
                 <div class="is-clearfix" style="width: 100%">
                   <div class="is-pulled-left" style="width: 14%">
                     <span class="icon">
