@@ -2,7 +2,6 @@
   <div id="vue-navs">
     <!-- Side Bar -->
     <side-bar
-      :lib="lib"
       :side-bar-type="sideBarType"
       :show-side-bar="showSideBar"
       :side-bar-style="sideBarStyle"
@@ -19,7 +18,6 @@
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar
-      :lib="lib"
       :nav-bar-style="navBarStyle"
       :hamburger-type="hamburgerType"
       :site="site"

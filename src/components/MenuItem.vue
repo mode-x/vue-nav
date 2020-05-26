@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <ul class="menu-list">
+  <ul class="menu-list">
       <li v-for="menuItem in menuItems" :key="menuItem.name">
         <router-link :to="menuItem.route" @click.native="openSubMenu(menuItem)">
           <div class="is-clearfix" style="width: 100%">
@@ -22,7 +21,6 @@
         </template>
       </li>
     </ul>
-  </div>
 </template>
 
 <script>
