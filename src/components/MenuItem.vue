@@ -2,7 +2,7 @@
   <div>
     <ul class="menu-list">
       <li v-for="menuItem in menuItems" :key="menuItem.name">
-        <router-link :to="menuItem.route" @click.native="openSubMenu">
+        <router-link :to="menuItem.route" @click.native="openSubMenu(menuItem)">
           <div class="is-clearfix" style="width: 100%">
             <div class="is-pulled-left" style="width: 14%">
               <span class="icon">
@@ -14,121 +14,43 @@
             </div>
           </div>
         </router-link>
-        <div
-          :id="`${menuItem.name.toLowerCase().replace(/\W/gi, '-')}-sub-menu`"
-          class="sub-menu"
-          style="display:none"
-          v-if="menuItem.hasOwnProperty('sub_menus')"
-          data-open="false"
-          :data-parent="`${menuItem.name.toLowerCase().replace(/\W/gi, '-')}`"
-        >
-          <ul>
-            <li
-              v-for="sub_menu_item in menuItem.sub_menus"
-              :key="sub_menu_item.name"
-            >
-              <router-link
-                :id="
-                  `${sub_menu_item.name
-                    .toLowerCase()
-                    .replace(/\W/gi, '-')}-sub-menu-items`
-                "
-                :to="sub_menu_item.route"
-                @click.native="$emit('toggle-side-bar')"
-                >{{ sub_menu_item.name }}</router-link
-              >
-            </li>
-          </ul>
-        </div>
+        <template v-if="menuItem.hasOwnProperty('sub_menus')">
+          <sub-menu-item
+            :menu-item = menuItem
+            @toggle-side-bar="$emit('toggle-side-bar')"
+          />
+        </template>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import SubMenuItem from "@/components/SubMenuItem.vue";
+
 export default {
   name: "MenuItem",
   props: {
     menuItems: Array
   },
   methods: {
-    openSubMenu(e) {
-      // Clicked menu item name
-      const name = e.target.innerText;
-      // Check if the clicked menu has sub menus
-      // If it does return it as menus
-      const menus = this.menuItems.filter(
-        menuItem => menuItem.sub_menus && menuItem.name === name
-      );
-
-      console.log(menus)
-
-      if (menus.length === 0) {
-        this.$emit('toggle-side-bar')
-        // Close others
-        const others = document.getElementsByClassName("sub-menu");
-        for (let i = 0; i < others.length; i++) {
-          const element = others[i];
-          console.log(element.getAttribute("id"))
-          document.getElementById(element.getAttribute("id")).style.display =
-            "none";
-          document
-            .getElementById(element.getAttribute("id"))
-            .setAttribute("data-open", "false");
-        }
-        return;
+    openSubMenu(item) {
+      // Close others
+      if (!item.sub_menus) {
+        this.$emit("toggle-side-bar");
       } else {
-        const id = `${name.toLowerCase().replace(/\W/gi, "-")}-sub-menu`;
-        const isOpened = document.getElementById(id).getAttribute("data-open");
-        if (isOpened === "true") {
-          document.getElementById(id).style.display = "none";
-          document.getElementById(id).setAttribute("data-open", "false");
-        } else {
-          document.getElementById(id).style.display = "block";
-          document.getElementById(id).setAttribute("data-open", "true");
-          // Close others
-          const others = document.getElementsByClassName("sub-menu");
-          for (let i = 0; i < others.length; i++) {
-            const element = others[i];
-            if (
-              element.getAttribute("data-parent") !==
-              name.toLowerCase().replace(/\W/gi, "-")
-            ) {
-              document.getElementById(
-                element.getAttribute("id")
-              ).style.display = "none";
-              document
-                .getElementById(element.getAttribute("id"))
-                .setAttribute("data-open", "false");
-            }
+        this.menuItems.forEach(menuItem => {
+          if (menuItem.name !== item.name){
+            menuItem.open_menu = false
           }
-        }
+        });
+        // Open sub menu
+        item.open_menu = !item.open_menu;
       }
     }
+  },
+  components: {
+    SubMenuItem
   }
 };
 </script>
-
-<style lang="scss">
-.sub-menu {
-  animation-name: slideIn;
-  animation-duration: 1s;
-  animation-timing-function: ease;
-  visibility: visible !important;
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(-25%);
-    opacity: 0;
-  }
-  80% {
-    transform: translateX(0%);
-    opacity: 0.35;
-  }
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
-</style>

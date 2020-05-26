@@ -51,6 +51,7 @@ export default {
           name: "Users",
           icon: "fas fa-users",
           route: "#",
+          open_menu: false,
           sub_menus: [
             { name: "Users", route: "/users" },
             { name: "Administrators", route: "/admin" }
@@ -60,6 +61,7 @@ export default {
           name: "Preferences",
           icon: "fas fa-cog",
           route: "/",
+          open_menu: false,
           sub_menus: [{ name: "Settings", route: "/settings" }]
         }
       ],
