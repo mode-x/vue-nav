@@ -26,7 +26,7 @@
         </div>
         <div class="column">
           <router-link to="/">
-            <p class="title is-4" style="padding: 5px;">
+            <p class="title is-4" style="padding: 11px;">
               {{ site.name }}
             </p>
           </router-link>
