@@ -28,7 +28,10 @@
           <hr />
           <ul class="menu-list">
             <li v-for="navBarItem in navBarItems" :key="navBarItem.name">
-              <router-link :to="navBarItem.route">
+              <router-link
+                :to="navBarItem.route"
+                @click.native="performAction(navBarItem.action)"
+              >
                 <div class="is-clearfix" style="width: 100%">
                   <div class="is-pulled-left" style="width: 14%">
                     <span class="icon">
@@ -38,18 +41,6 @@
                   <div class="is-pulled-left" style="width: 86%">
                     {{ navBarItem.name }}
                   </div>
-                </div>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="#" @click.native="$emit('log-out')">
-                <div class="is-clearfix" style="width: 100%">
-                  <div class="is-pulled-left" style="width: 14%">
-                    <span class="icon">
-                      <i class="fas fa-sign-out-alt" size="lg"></i>
-                    </span>
-                  </div>
-                  <div class="is-pulled-left" style="width: 86%">Log Out</div>
                 </div>
               </router-link>
             </li>
@@ -106,6 +97,11 @@ export default {
       } else {
         this.sideBarStyle.top = "0px";
       }
+    },
+    performAction(action) {
+      if (typeof action === "function") {
+        action();
+      }
     }
   },
   mounted() {
@@ -128,7 +124,7 @@ export default {
   padding: 16px 16px 0px 16px;
 }
 
-aside{
+aside {
   padding-bottom: 100px;
 }
 
@@ -146,5 +142,4 @@ aside{
     width: 250px;
   }
 }
-
 </style>

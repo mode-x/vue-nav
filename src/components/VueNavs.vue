@@ -10,13 +10,12 @@
       :nav-bar-items="navBarItems"
       :side-bar-items="sideBarItems"
       @toggle-side-bar="toggleSideBar"
-      @log-out="logOut"
     >
-    <template v-slot:info>
-      <slot name="side-bar-info"></slot>
-    </template>
+      <template v-slot:info>
+        <slot name="side-bar-info"></slot>
+      </template>
     </side-bar>
-    
+
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar
@@ -27,7 +26,6 @@
       :show-side-bar="showSideBar"
       :nav-bar-items="navBarItems"
       @toggle-side-bar="toggleSideBar"
-      @log-out="logOut"
     />
   </div>
 </template>
@@ -52,16 +50,7 @@ export default {
     sideBarStyle: Object,
     navBarStyle: Object,
     sideBarItems: Array,
-    navBarItems: {
-      type: Array,
-      default: () => {
-        return [
-          { name: "Account", icon: "fas fa-user", route: "/account" },
-          { name: "Profile", icon: "fas fa-user", route: "/profile" },
-          { name: "Setting", icon: "fas fa-cog", route: "/setting" }
-        ];
-      }
-    }
+    navBarItems: Array
   },
   methods: {
     toggleSideBar() {

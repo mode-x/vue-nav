@@ -10,8 +10,8 @@
       :nav-bar-items="nav_bar_items"
       @log-out="logOut"
     >
-    <template v-slot:side-bar-info>
-      <hr />
+      <template v-slot:side-bar-info>
+        <hr />
         <p class="user-slot has-background-grey-lighter">
           {{ user.email }} | {{ user.role }}
         </p>
@@ -68,7 +68,15 @@ export default {
       ],
       nav_bar_items: [
         { name: "Profile", icon: "fas fa-user", route: "/profile" },
-        { name: "Setting", icon: "fas fa-cog", route: "/setting" }
+        { name: "Setting", icon: "fas fa-cog", route: "/setting" },
+        {
+          name: "Logout",
+          icon: "fas fa-sign-out-alt",
+          route: "/home",
+          action: () => {
+            this.logOut();
+          }
+        }
       ]
     };
   },
@@ -100,7 +108,7 @@ a.nav-menu-item:hover {
 }
 
 .menu-list a:hover {
-  background-color: orange !important; 
+  background-color: orange !important;
   color: #2c2c2c !important;
 }
 </style>
