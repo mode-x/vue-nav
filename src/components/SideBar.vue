@@ -10,7 +10,6 @@
           :menu-items="sideBarItems"
           @toggle-side-bar="$emit('toggle-side-bar')"
         />
-        <!-- Logged In menu -->
         <section class="is-hidden-desktop">
           <hr />
           <ul class="menu-list">
@@ -70,10 +69,8 @@ export default {
     }
   },
   watch: {
-    showSideBar(n, o) {
-      if (n) {
-        this.sideBarStyle.width = "250px";
-      }
+    showSideBar(allowed) {
+      if (allowed) this.sideBarStyle.width = "250px";
     }
   },
   methods: {
