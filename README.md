@@ -48,13 +48,12 @@ $hamburger-layer-width: 30px;
 
 ```
 <vue-navs
-  :lib="lib"
-  :hamburger-type="hamburger_type"
   :site="site"
   :user="user"
   :side-bar-type="side_bar_type"
   :side-bar-items="side_bar_items"
   :nav-bar-items="nav_bar_items"
+  :hamburger-type="hamburger_type"
 />
 ```
 
@@ -70,12 +69,12 @@ The component currently, supports only fontawesome icons. Other icon libraries w
 
 ### Props - default composition
 
-- hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
 - site is an Object.
 - user is an Object.
 - side-bar-type is String specifying the type. It is either "above" or "below".
 - side-bar-items is an Array.
 - nav-bar-items is an Object.
+- hamburger-type is a String (hamburger--spin is the default style. Visit https://jonsuh.com/hamburgers/ for more styles).
 
 Below is the default composition of the props property of the component:
 
