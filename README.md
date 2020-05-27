@@ -48,7 +48,7 @@ $hamburger-layer-width: 30px;
 
 ```
 <vue-navs
-  :site="site"
+  :site-name="name"
   :user="user"
   :side-bar-type="side_bar_type"
   :side-bar-items="side_bar_items"
@@ -69,7 +69,7 @@ The component currently, supports only fontawesome icons. Other icon libraries w
 
 ### Props - default composition
 
-- site is an Object.
+- site-name is String.
 - user is an Object.
 - side-bar-type is String specifying the type. It is either "above" or "below".
 - side-bar-items is an Array.
@@ -85,7 +85,7 @@ Below is the default composition of the props property of the component:
     data() {
       return {
         hamburger_type: "hamburger--spin",
-        site: { name: "VUE NAVS" },
+        name: "VUE NAVS",
         user: {
           email: "mode-x@github.com",
           role: "admin",

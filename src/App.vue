@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <vue-navs
-      :site="site"
+      :site-name="name"
       :user="user"
       :side-bar-type="side_bar_type"
       :side-bar-items="side_bar_items"
@@ -33,7 +33,7 @@ export default {
   name: "app",
   data() {
     return {
-      site: { name: "Pidasys" },
+      name: "Pidasys",
       user: {
         email: "mode-x@github.com",
         role: "admin",

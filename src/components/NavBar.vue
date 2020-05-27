@@ -27,7 +27,7 @@
         <div class="column">
           <router-link to="/">
             <p class="title is-4" style="padding: 11px;">
-              {{ site.name }}
+              {{ siteName }}
             </p>
           </router-link>
         </div>
@@ -71,7 +71,7 @@ export default {
       type: String,
       default: "hamburger--spin"
     },
-    site: Object,
+    siteName: String,
     showSideBar: Boolean,
     navBarItems: Array,
     navBarStyle: {

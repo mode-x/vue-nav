@@ -19,7 +19,7 @@
     <nav-bar
       :nav-bar-style="navBarStyle"
       :hamburger-type="hamburgerType"
-      :site="site"
+      :site-name="siteName"
       :show-side-bar="showSideBar"
       :nav-bar-items="navBarItems"
       @toggle-side-bar="toggleSideBar"
@@ -41,7 +41,7 @@ export default {
   props: {
     lib: { type: String, default: "bulma" },
     hamburgerType: String,
-    site: Object,
+    siteName: String,
     user: Object,
     sideBarType: String,
     sideBarStyle: Object,
