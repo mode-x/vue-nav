@@ -2,7 +2,6 @@
   <div id="vue-navs">
     <!-- Side Bar -->
     <side-bar
-      :component-key="componentKey"
       :side-bar-type="sideBarType"
       :show-side-bar="showSideBar"
       :side-bar-style="sideBarStyle"
@@ -48,8 +47,7 @@ export default {
     sideBarStyle: Object,
     navBarStyle: Object,
     sideBarItems: Array,
-    navBarItems: Array,
-    componentKey: String
+    navBarItems: Array
   },
   methods: {
     toggleSideBar() {

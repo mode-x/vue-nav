@@ -6,9 +6,14 @@
       :side-bar-type="side_bar_type"
       :side-bar-items="side_bar_items"
       :nav-bar-items="nav_bar_items"
-      :component-key="user.role"
+      :key="user.role"
     >
       <template v-slot:side-bar-info>
+        <div class="has-text-centered">
+          <figure class="image is-64x64 is-inline-block">
+            <img class="is-rounded" :src="user.avatar" />
+          </figure>
+        </div>
         <hr />
         <p class="user-slot has-background-grey-lighter">
           {{ user.email }} | {{ user.role }}

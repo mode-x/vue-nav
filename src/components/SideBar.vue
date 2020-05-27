@@ -1,23 +1,9 @@
 <template>
-  <div :key="componentKey">
-      <transition name="side-bar">
+  <transition name="side-bar">
     <div id="side-bar" v-if="showSideBar" v-bind:style="sideBarStyle">
       <aside>
         <section class="side-bar-header">
-          <slot name="avatar">
-            <p class="menu-label">Menu</p>
-            <div class="has-text-centered">
-              <figure class="image is-64x64 is-inline-block">
-                <img class="is-rounded" :src="user.avatar" />
-              </figure>
-            </div>
-          </slot>
-          <slot name="info">
-            <p class="user-info has-background-grey-lighter">
-              {{ user.email }} | {{ user.role }}
-            </p>
-            <hr />
-          </slot>
+          <slot name="info"></slot>
         </section>
         <!-- Menu items-->
         <menu-item
@@ -50,7 +36,6 @@
       </aside>
     </div>
   </transition>
-  </div>
 </template>
 
 <script>
@@ -82,8 +67,7 @@ export default {
           boxShadow: `0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)`
         };
       }
-    },
-    componentKey: String
+    }
   },
   watch: {
     showSideBar(n, o) {
@@ -115,7 +99,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .side-bar-header {
   padding: 16px 16px 0px 16px;
 }
