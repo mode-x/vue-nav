@@ -6,6 +6,7 @@
       :side-bar-type="side_bar_type"
       :side-bar-items="side_bar_items"
       :nav-bar-items="nav_bar_items"
+      :component-key="user.role"
     >
       <template v-slot:side-bar-info>
         <hr />

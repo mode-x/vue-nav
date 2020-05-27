@@ -1,5 +1,6 @@
 <template>
-  <transition name="side-bar">
+  <div :key="componentKey">
+      <transition name="side-bar">
     <div id="side-bar" v-if="showSideBar" v-bind:style="sideBarStyle">
       <aside>
         <section class="side-bar-header">
@@ -49,6 +50,7 @@
       </aside>
     </div>
   </transition>
+  </div>
 </template>
 
 <script>
@@ -80,7 +82,8 @@ export default {
           boxShadow: `0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)`
         };
       }
-    }
+    },
+    componentKey: String
   },
   watch: {
     showSideBar(n, o) {
