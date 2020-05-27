@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <vue-navs
-      :hamburger-type="hamburger_type"
       :site="site"
       :user="user"
       :side-bar-type="side_bar_type"
@@ -28,7 +27,6 @@ export default {
   name: "app",
   data() {
     return {
-      hamburger_type: "hamburger--spin",
       site: { name: "Pidasys" },
       user: {
         email: "mode-x@github.com",

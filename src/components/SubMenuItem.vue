@@ -32,7 +32,7 @@ export default {
 }
 
 .slide-leave-active {
-  animation: slide-in-out 0.3s reverse;
+  animation: slide-in-out 0.8s ease-in-out reverse;
 }
 
 @keyframes slide-in-out {

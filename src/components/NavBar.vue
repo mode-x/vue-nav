@@ -67,7 +67,10 @@ export default {
     };
   },
   props: {
-    hamburgerType: String,
+    hamburgerType: {
+      type: String,
+      default: "hamburger--spin"
+    },
     site: Object,
     showSideBar: Boolean,
     navBarItems: Array,
@@ -79,8 +82,7 @@ export default {
           height: "80px",
           padding: "10px",
           opacity: "0.8",
-          background: `linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255))`,
-          float: "right"
+          background: `linear-gradient(to right, rgb(129, 184, 230), rgb(255, 255, 255))`
         };
       }
     }
@@ -93,24 +95,6 @@ export default {
         this.sideBarContainerStyle.minWidth = "0px";
       }
     }
-  },
-  mounted() {
-    document.addEventListener("DOMContentLoaded", () => {
-      const $navbarBurgers = Array.prototype.slice.call(
-        document.querySelectorAll(".navbar-burger"),
-        0
-      );
-      if ($navbarBurgers.length > 0) {
-        $navbarBurgers.forEach(el => {
-          el.addEventListener("click", () => {
-            const target = el.dataset.target;
-            const $target = document.getElementById(target);
-            el.classList.toggle("is-active");
-            $target.classList.toggle("is-active");
-          });
-        });
-      }
-    });
   },
   components: {
     NavMenuItem

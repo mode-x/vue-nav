@@ -1,7 +1,7 @@
 <template>
   <transition name="side-bar">
     <div id="side-bar" v-if="showSideBar" v-bind:style="sideBarStyle">
-      <aside style="max-width: 250px; min-width: 250px;">
+      <aside>
         <section class="side-bar-header">
           <slot name="avatar">
             <p class="menu-label">Menu</p>
@@ -99,9 +99,7 @@ export default {
       }
     },
     performAction(action) {
-      if (typeof action === "function") {
-        action();
-      }
+      if (typeof action === "function") action();
     }
   },
   mounted() {
@@ -114,11 +112,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user-info {
-  font-size: 0.85em;
-  padding: 5px;
-  margin-bottom: 5px;
-}
 
 .side-bar-header {
   padding: 16px 16px 0px 16px;
@@ -126,6 +119,8 @@ export default {
 
 aside {
   padding-bottom: 100px;
+  max-width: 250px;
+  min-width: 250px;
 }
 
 .side-bar-enter-active {

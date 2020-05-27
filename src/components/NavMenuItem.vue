@@ -6,7 +6,7 @@
         class="nav-menu-item"
         @click.native="performAction(action)"
       >
-        <p class="icon" v-if="!noIcon">
+        <p class="icon" v-if="icon !== ''">
           <i :class="icon" size="lg"></i>
         </p>
         <p class="heading">{{ name }}</p>
@@ -20,19 +20,16 @@ export default {
   name: "NavMenuItem",
   props: {
     name: String,
-    icon: String,
+    icon: {
+      type: String,
+      default: ""
+    },
     route: String,
-    action: Function,
-    noIcon: {
-      type: Boolean,
-      default: false
-    }
+    action: Function
   },
   methods: {
     performAction(action) {
-      if (typeof action === "function") {
-        action();
-      }
+      if (typeof action === "function") action();
     }
   }
 };

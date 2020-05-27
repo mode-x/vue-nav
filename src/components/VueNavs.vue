@@ -14,7 +14,6 @@
         <slot name="side-bar-info"></slot>
       </template>
     </side-bar>
-
     <!-- <div class="modal-background" style="display:none"></div> -->
     <!-- Nav Bar -->
     <nav-bar
@@ -52,6 +51,7 @@ export default {
   },
   methods: {
     toggleSideBar() {
+      // Activates the hamburger-btn
       document.getElementById("hamburger-btn").classList.toggle("is-active");
       this.showSideBar = !this.showSideBar;
 
