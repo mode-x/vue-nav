@@ -2,22 +2,21 @@
   <ul>
     <li v-for="menuItem in menuItems" :key="menuItem.name">
       <router-link :to="menuItem.route" @click.native="openSubMenu(menuItem)">
-        <div class="is-clearfix" style="width: 100%">
-          <div class="is-pulled-left" style="width: 14%">
-            <span class="icon">
-              <i :class="menuItem.icon" size="lg"></i>
-            </span>
-          </div>
-          <div class="is-pulled-left" style="width: 86%">
-            {{ menuItem.name }}
+        <div class="menu-header">
+          <div class="is-clearfix">
+            <div class="is-pulled-left" style="width: 14%">
+              <span class="icon">
+                <i :class="menuItem.icon" size="lg"></i>
+              </span>
+            </div>
+            <div class="is-pulled-left" style="width: 86%">{{ menuItem.name }}</div>
           </div>
         </div>
       </router-link>
       <template v-if="menuItem.hasOwnProperty('sub_menus')">
-        <sub-menu-item
-          :menu-item="menuItem"
-          @toggle-side-bar="$emit('toggle-side-bar')"
-        />
+        <div class="menu-body">
+          <sub-menu-item :menu-item="menuItem" @toggle-side-bar="$emit('toggle-side-bar')" />
+        </div>
       </template>
     </li>
   </ul>
@@ -52,3 +51,26 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.menu-header {
+  padding: 12px;
+  width: 100%;
+}
+
+.menu-header:hover {
+  background-color: orange;
+}
+
+.menu-body {
+  background-color: #eeeeee;
+}
+
+.menu-item {
+  padding: 5px 0px 5px 16px;
+}
+
+.menu-item:hover {
+  background-color: orange;
+}
+</style>

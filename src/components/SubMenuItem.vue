@@ -2,15 +2,13 @@
   <transition name="slide">
     <div v-if="menuItem.open_menu">
       <ul>
-        <li
-          v-for="sub_menu_item in menuItem.sub_menus"
-          :key="sub_menu_item.name"
-        >
-          <router-link
-            :to="sub_menu_item.route"
-            @click.native="$emit('toggle-side-bar')"
-            >{{ sub_menu_item.name }}</router-link
-          >
+        <li v-for="sub_menu_item in menuItem.sub_menus" :key="sub_menu_item.name">
+          <div class="menu-item">
+            <router-link
+              :to="sub_menu_item.route"
+              @click.native="$emit('toggle-side-bar')"
+            >{{ sub_menu_item.name }}</router-link>
+          </div>
         </li>
       </ul>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "vue-navs",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "A composite navigation component for vue apps.",
   "author": "mode-x",
   "scripts": {
@@ -22,8 +22,8 @@
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.3.1",
     "bulma": "^0.7.5",
-    "core-js": "^3.6.4",
     "copyfiles": "^2.1.1",
+    "core-js": "^3.6.4",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.2.2",
@@ -32,7 +32,7 @@
     "node-sass": "^4.9.0",
     "popper.js": "^1.15.0",
     "prettier": "^1.19.1",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^8.0.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
     "vue-template-compiler": "^2.6.10"
