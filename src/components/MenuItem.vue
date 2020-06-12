@@ -1,5 +1,5 @@
 <template>
-  <ul class="menu-list">
+  <ul>
     <li v-for="menuItem in menuItems" :key="menuItem.name">
       <router-link :to="menuItem.route" @click.native="openSubMenu(menuItem)">
         <div class="is-clearfix" style="width: 100%">
