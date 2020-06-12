@@ -55,7 +55,6 @@ export default {
 <style lang="scss">
 .menu-header {
   padding: 12px;
-  width: 100%;
 }
 
 .menu-header:hover {
