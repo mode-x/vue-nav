@@ -26,7 +26,7 @@
         </div>
         <div class="column">
           <router-link to="/">
-            <p class="title is-4 site-name">
+            <p class="site-name">
               {{ siteName }}
             </p>
           </router-link>
@@ -132,6 +132,8 @@ export default {
 }
 
 .site-name{
-  padding: 11px;
+  padding: 8px;
+  font-size: 1.5em;
+  color: #fff;
 }
 </style>

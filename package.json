@@ -1,6 +1,6 @@
 {
   "name": "vue-navs",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "A composite navigation component for vue apps.",
   "author": "mode-x",
   "scripts": {
